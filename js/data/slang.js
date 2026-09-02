@@ -1,0 +1,42 @@
+/* 신조어·최신 표현 팩.
+ * version과 updated를 기준으로 갱신 여부를 판단한다.
+ * 앱 설정에서 같은 형식의 JSON을 붙여넣거나 URL로 불러와 이 팩을 덮어쓸 수 있다.
+ * register: casual(또래·SNS) / work(업무) — 업무 표현이 실전 가치가 더 크다. */
+window.SLANG = {
+  version: 1,
+  updated: '2026-09-02',
+  source: '기본 내장 팩',
+  items: [
+    // ---- 업무에서 실제로 오가는 말 ----
+    { en: 'circle back', ko: '나중에 다시 논의하다', note: '회의에서 결론을 미룰 때. "Let\'s circle back on that Thursday."', register: 'work' },
+    { en: 'put a pin in it', ko: '일단 보류하다', note: '지금은 넘어가고 나중에 다루자는 뜻. circle back보다 단호하다.', register: 'work' },
+    { en: "I don't have the bandwidth", ko: '지금 여력이 없다', note: '"바쁘다"의 프로페셔널 버전. 거절 사유로 자주 쓴다.', register: 'work' },
+    { en: 'loop me in', ko: '나도 대화에 넣어줘', note: '메일 참조·회의 참석 요청. loop someone in 형태로 쓴다.', register: 'work' },
+    { en: 'ping me', ko: '연락 줘 / 찔러줘', note: '메신저로 짧게 연락달라는 뜻.', register: 'work' },
+    { en: "let's not boil the ocean", ko: '너무 크게 벌이지 말자', note: '범위를 좁히자는 완곡한 제안.', register: 'work' },
+    { en: 'double-click on that', ko: '그 부분을 더 파보자', note: '한 주제를 깊이 들여다보자는 회의 표현.', register: 'work' },
+    { en: 'socialize the idea', ko: '미리 여기저기 얘기해두다', note: '정식 제안 전에 분위기를 만드는 것. 공공기관 업무에도 그대로 통한다.', register: 'work' },
+    { en: 'quiet quitting', ko: '조용한 퇴사', note: '그만두지 않되 딱 시킨 만큼만 하는 태도.', register: 'work' },
+    { en: 'touch base', ko: '가볍게 상황 공유하다', note: '"Let\'s touch base next week."', register: 'work' },
+    { en: 'take it offline', ko: '이건 따로 얘기하자', note: '회의 중 곁가지 논의를 끊을 때.', register: 'work' },
+    { en: "that's a hard no", ko: '그건 절대 안 된다', note: '단호한 거절. 반대는 "that\'s a hard yes".', register: 'work' },
+
+    // ---- 또래·SNS에서 들리는 말 (알아듣기 위주) ----
+    { en: 'no cap', ko: '진짜로 / 거짓말 아니고', note: 'cap = 거짓말. 문장 끝에 붙인다.', register: 'casual' },
+    { en: "it's giving …", ko: '~하는 느낌이다', note: '"It\'s giving 90s indie film." 분위기를 지목할 때.', register: 'casual' },
+    { en: 'low-key / high-key', ko: '살짝 / 대놓고', note: '"I low-key loved it." 감정의 세기를 조절한다.', register: 'casual' },
+    { en: 'mid', ko: '그저 그런', note: '혹평. "The third act was mid."', register: 'casual' },
+    { en: 'they ate', ko: '완벽하게 해냈다', note: '칭찬. "The lead actor ate."', register: 'casual' },
+    { en: 'hits different', ko: '느낌이 남다르다', note: '같은 것도 특정 조건에서 더 좋을 때.', register: 'casual' },
+    { en: 'understood the assignment', ko: '뭘 해야 하는지 정확히 알았다', note: '기대에 완벽히 부응했다는 칭찬.', register: 'casual' },
+    { en: 'living rent-free in my head', ko: '머릿속에서 떠나질 않는다', note: '좋든 나쁘든 계속 생각난다는 뜻.', register: 'casual' },
+    { en: 'the ick', ko: '갑자기 정 떨어지는 순간', note: '"He gave me the ick."', register: 'casual' },
+    { en: 'main character energy', ko: '주인공 같은 기운', note: '자기 삶의 주인공처럼 구는 태도. 영화 얘기에 잘 붙는다.', register: 'casual' },
+    { en: 'touch grass', ko: '밖에 좀 나가라', note: '온라인에 너무 빠진 사람에게. 농담조.', register: 'casual' },
+    { en: 'IYKYK', ko: '아는 사람은 안다', note: 'If You Know, You Know의 약자.', register: 'casual' },
+    { en: 'receipts', ko: '증거', note: '"Show me the receipts." 캡처·기록을 뜻한다.', register: 'casual' },
+    { en: 'ghosting', ko: '연락 두절', note: '답 없이 사라지는 것. 업계에서도 그대로 쓴다.', register: 'casual' },
+    { en: 'cooked', ko: '망했다 / 끝났다', note: '"We\'re cooked." 마감 앞에서 자주 들린다.', register: 'casual' },
+    { en: 'a canon event', ko: '피할 수 없는 통과의례', note: '겪어야만 하는 일. "That flop was a canon event."', register: 'casual' }
+  ]
+};

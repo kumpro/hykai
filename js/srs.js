@@ -34,9 +34,11 @@
     c.seen += 1;
     if (correct) {
       c.box = Math.min(5, c.box + 1);
+      Store.state.daily.correct = (Store.state.daily.correct || 0) + 1;
     } else {
       c.wrong += 1;
       c.box = 1;
+      Store.state.daily.wrong = (Store.state.daily.wrong || 0) + 1;
     }
     c.due = dayNumber() + INTERVALS[c.box];
     Store.state.daily.cards += 1;
@@ -85,8 +87,57 @@
     return { total: total, learned: learned, mastered: mastered, due: dueQueue().length };
   }
 
+  /* 카드 id로 원래 표현을 되찾는다 — 점검 화면에서 약한 표현을 보여주기 위해 */
+  function lookup(id) {
+    var p = id.split('/');
+    var pack = window.PACKS[p[0]];
+    if (!pack) return null;
+    var scene = pack.scenes.find(function (s) { return s.id === p[1]; });
+    if (!scene) return null;
+    var ex = scene.expressions[+p[2]];
+    if (!ex) return null;
+    return { id: id, ex: ex, scene: scene.title, icon: pack.icon, modeTitle: pack.title, mode: pack.id };
+  }
+
+  /* 가장 자주 틀린 표현들 — 여기가 실제 약점이다 */
+  function weakest(limit) {
+    return Object.keys(Store.state.cards)
+      .map(function (id) {
+        var c = Store.state.cards[id];
+        var info = lookup(id);
+        return info ? { info: info, wrong: c.wrong, seen: c.seen, box: c.box } : null;
+      })
+      .filter(function (x) { return x && x.wrong > 0; })
+      .sort(function (a, b) { return b.wrong - a.wrong || a.box - b.box; })
+      .slice(0, limit || 10);
+  }
+
+  /* 앞으로 며칠간 하루에 몇 장이 올라오는지 — 밀림을 미리 본다 */
+  function forecast(days) {
+    var base = dayNumber();
+    var out = [];
+    for (var d = 0; d < (days || 14); d++) out.push(0);
+    Object.keys(Store.state.cards).forEach(function (id) {
+      var offset = Store.state.cards[id].due - base;
+      if (offset < 0) offset = 0;
+      if (offset < out.length) out[offset] += 1;
+    });
+    return out;
+  }
+
+  /* 박스별 분포 — 1번에 몰려 있으면 진도가 아니라 반복이 필요하다는 뜻 */
+  function boxSpread() {
+    var out = [0, 0, 0, 0, 0];
+    Object.keys(Store.state.cards).forEach(function (id) {
+      var b = Store.state.cards[id].box;
+      if (b >= 1 && b <= 5) out[b - 1] += 1;
+    });
+    return out;
+  }
+
   window.SRS = {
     cardId: cardId, get: get, grade: grade, isDue: isDue,
-    dueQueue: dueQueue, stats: stats, dayNumber: dayNumber
+    dueQueue: dueQueue, stats: stats, dayNumber: dayNumber,
+    lookup: lookup, weakest: weakest, forecast: forecast, boxSpread: boxSpread
   };
 })();

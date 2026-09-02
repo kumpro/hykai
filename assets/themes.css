@@ -1,0 +1,137 @@
+/* 모드별 시대 테마.
+ * :root[data-theme] 하나로 색·질감·서체가 함께 바뀐다.
+ * body가 아니라 문서 루트에 거는 이유는, 내용보다 화면이 길 때 아래쪽까지 같은 색이 깔리게 하기 위해서다.
+ * 색만 바꾸면 밋밋해지므로 배경 질감과 제목 서체까지 같이 움직인다. */
+
+/* ---------- 고대 — 파피루스와 사암, 금 ---------- */
+:root[data-theme="ancient"] {
+  --bg: #171208;
+  --bg-2: #1f1809;
+  --card: #241c0c;
+  --card-2: #2e2411;
+  --line: #453516;
+  --ink: #f3e7cd;
+  --ink-2: #c3ae86;
+  --ink-3: #8b7a58;
+  --accent: #d4a437;
+  --accent-ink: #2a1f05;
+  --good: #9fb26a;
+  --bad: #c9704b;
+  --radius: 4px;
+  --era: '기원전의 서판';
+  --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(212,164,55,.035) 0 1px, transparent 1px 7px),
+    radial-gradient(ellipse at 50% -10%, rgba(212,164,55,.10), transparent 60%);
+}
+
+/* ---------- 중세 — 양피지와 진홍, 필사본 ---------- */
+:root[data-theme="medieval"] {
+  --bg: #130d0e;
+  --bg-2: #1b1213;
+  --card: #201516;
+  --card-2: #2b1c1e;
+  --line: #44292c;
+  --ink: #efe2d6;
+  --ink-2: #bda99b;
+  --ink-3: #85706a;
+  --accent: #b8434a;
+  --accent-ink: #fbeeea;
+  --good: #7fa878;
+  --bad: #d9744f;
+  --radius: 3px;
+  --era: '필사실';
+  --display: "Baskerville", "Hoefler Text", Garamond, Georgia, serif;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(184,67,74,.04) 0 1px, transparent 1px 28px),
+    radial-gradient(ellipse at 50% 0%, rgba(184,67,74,.12), transparent 55%);
+}
+
+/* ---------- 근대 — 아르데코, 여행 포스터의 청록과 황동 ---------- */
+:root[data-theme="deco"] {
+  --bg: #08141a;
+  --bg-2: #0c1c24;
+  --card: #0f232c;
+  --card-2: #142e39;
+  --line: #23454f;
+  --ink: #e8f2f4;
+  --ink-2: #a2bcc3;
+  --ink-3: #6d8992;
+  --accent: #d9a441;
+  --accent-ink: #08141a;
+  --good: #62b58f;
+  --bad: #e0755f;
+  --radius: 2px;
+  --era: '증기선과 침대차';
+  --display: "Futura", "Century Gothic", "Trebuchet MS", sans-serif;
+  background-image:
+    repeating-linear-gradient(135deg, rgba(217,164,65,.045) 0 1px, transparent 1px 14px),
+    linear-gradient(180deg, rgba(217,164,65,.07), transparent 40%);
+}
+
+/* ---------- 현대 — 편집실 조명 (기본값) ---------- */
+:root[data-theme="modern"] {
+  --bg: #0f0d0c;
+  --bg-2: #171412;
+  --card: #1d1917;
+  --card-2: #262120;
+  --line: #322c29;
+  --ink: #f2ece6;
+  --ink-2: #b3a89f;
+  --ink-3: #7d736c;
+  --accent: #e0a05a;
+  --accent-ink: #2a1c0c;
+  --good: #6fbf8b;
+  --bad: #e2705f;
+  --radius: 14px;
+  --era: '편집실';
+  --display: inherit;
+  background-image: none;
+}
+
+/* ---------- 미래 — 네온 시안, 유리 ---------- */
+:root[data-theme="future"] {
+  --bg: #06090f;
+  --bg-2: #0a1019;
+  --card: #0d141f;
+  --card-2: #131d2c;
+  --line: #1f3049;
+  --ink: #e6f1ff;
+  --ink-2: #94aecb;
+  --ink-3: #5f7691;
+  --accent: #4fd6e0;
+  --accent-ink: #04161a;
+  --good: #5fe0a8;
+  --bad: #ff7a8a;
+  --radius: 10px;
+  --era: '아직 오지 않은 것';
+  --display: "SF Mono", "JetBrains Mono", "Roboto Mono", ui-monospace, monospace;
+  background-image:
+    linear-gradient(180deg, rgba(79,214,224,.09), transparent 35%),
+    repeating-linear-gradient(0deg, rgba(79,214,224,.028) 0 1px, transparent 1px 4px);
+}
+
+/* 테마가 붙으면 제목 서체와 모서리가 함께 바뀐다 */
+:root[data-theme] { background-attachment: fixed; }
+:root[data-theme] .hero-title,
+:root[data-theme] .fc-en,
+:root[data-theme] .topbar h2,
+:root[data-theme] .done-card h3 { font-family: var(--display); }
+
+:root[data-theme="ancient"] .hero-eyebrow::after,
+:root[data-theme="medieval"] .hero-eyebrow::after,
+:root[data-theme="deco"] .hero-eyebrow::after,
+:root[data-theme="future"] .hero-eyebrow::after {
+  content: ' · ' var(--era);
+  opacity: .6;
+}
+
+/* 미래 테마에서만 은은한 발광 */
+:root[data-theme="future"] .btn.primary,
+:root[data-theme="future"] .tabs button.on {
+  box-shadow: 0 0 18px rgba(79, 214, 224, .28);
+}
+
+/* 고대·중세는 각진 카드가 어울린다 */
+:root[data-theme="ancient"] .card,
+:root[data-theme="medieval"] .card { border-width: 1px 1px 2px; }

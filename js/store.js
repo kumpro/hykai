@@ -8,9 +8,19 @@
     cards: {},          // cardId -> { box, due, seen, wrong }
     scenes: {},         // sceneId -> { studied, lastAt }
     streak: { count: 0, lastDay: null, best: 0 },
-    daily: { day: null, cards: 0, lines: 0, goal: 12 },
-    settings: { rate: 0.9, voice: null, hideKo: false, autoAdvance: true },
-    log: []             // 최근 학습 기록 (최대 60일)
+    daily: { day: null, cards: 0, lines: 0, correct: 0, wrong: 0, goal: 12 },
+    settings: {
+      rate: 0.9,
+      voice: null,
+      hideKo: false,
+      dialect: 'us',      // us | gb
+      persona: 'man',     // personas.js의 id
+      theme: 'auto'       // auto = 모드별 시대 테마 자동 적용
+    },
+    custom: { scenes: [] },   // 로그라인으로 생성한 장면
+    exams: [],                // 시험 응시 기록
+    slang: null,              // 사용자가 갱신한 신조어 팩 (없으면 내장 팩)
+    log: []                   // 최근 학습 기록 (최대 90일)
   };
 
   function today() {
@@ -58,12 +68,20 @@
     var t = today();
     if (state.daily.day !== t) {
       if (state.daily.day && (state.daily.cards > 0 || state.daily.lines > 0)) {
-        state.log.unshift({ day: state.daily.day, cards: state.daily.cards, lines: state.daily.lines });
-        state.log = state.log.slice(0, 60);
+        state.log.unshift({
+          day: state.daily.day,
+          cards: state.daily.cards,
+          lines: state.daily.lines,
+          correct: state.daily.correct || 0,
+          wrong: state.daily.wrong || 0
+        });
+        state.log = state.log.slice(0, 90);
       }
       state.daily.day = t;
       state.daily.cards = 0;
       state.daily.lines = 0;
+      state.daily.correct = 0;
+      state.daily.wrong = 0;
       save();
     }
   }

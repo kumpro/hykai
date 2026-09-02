@@ -18,29 +18,44 @@
 
   function listVoices() { return voices; }
 
-  function pickVoice(name) {
+  /* 영국식/미국식 설정에 맞는 목소리를, 그 안에서 다시 페르소나에 맞는 목소리를 고른다.
+   * 기기에 해당 목소리가 없으면 피치와 속도로 인물의 결을 흉내 낸다. */
+  function pickVoice(name, personaId, dialect) {
     if (name) {
       var found = voices.find(function (v) { return v.name === name; });
       if (found) return found;
     }
-    // 자연스러운 목소리를 우선한다: Google > Samantha/Daniel > 나머지 en-US
-    var pref = voices.find(function (v) { return /Google US English/i.test(v.name); })
-      || voices.find(function (v) { return /Samantha|Daniel|Karen|Aaron/i.test(v.name); })
-      || voices.find(function (v) { return /en-US/i.test(v.lang); })
-      || voices[0];
-    return pref || null;
+    var want = dialect === 'gb' ? /en-GB/i : /en-US/i;
+    var pool = voices.filter(function (v) { return want.test(v.lang); });
+    if (!pool.length) pool = voices;
+
+    var persona = window.PERSONA_BY_ID && window.PERSONA_BY_ID[personaId];
+    if (persona && persona.prefer) {
+      var matched = pool.find(function (v) { return persona.prefer.test(v.name); });
+      if (matched) return matched;
+    }
+    return pool.find(function (v) { return /Google|Samantha|Daniel|Karen|Alex/i.test(v.name); })
+      || pool[0] || voices[0] || null;
   }
 
   function speak(text, opts) {
     opts = opts || {};
     return new Promise(function (resolve) {
-      if (!synth) { resolve(false); return; }
+      if (!synth || !text) { resolve(false); return; }
+      var s = Store.state.settings;
+      var dialect = opts.dialect || s.dialect || 'us';
+      var personaId = opts.persona || s.persona || 'man';
+      var persona = (window.PERSONA_BY_ID && window.PERSONA_BY_ID[personaId]) || { pitch: 1, rate: 1 };
+
       synth.cancel();
       var u = new SpeechSynthesisUtterance(text);
-      var v = pickVoice(opts.voice || Store.state.settings.voice);
-      if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = 'en-US'; }
-      u.rate = opts.rate != null ? opts.rate : (Store.state.settings.rate || 0.9);
-      u.pitch = opts.pitch != null ? opts.pitch : 1;
+      var v = pickVoice(opts.voice || s.voice, personaId, dialect);
+      if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = window.DIALECT ? DIALECT.lang(dialect) : 'en-US'; }
+
+      var base = opts.rate != null ? opts.rate : (s.rate || 0.9);
+      u.rate = Math.max(0.5, Math.min(1.6, base * (opts.ignorePersona ? 1 : persona.rate)));
+      u.pitch = opts.pitch != null ? opts.pitch : (opts.ignorePersona ? 1 : persona.pitch);
+
       u.onend = function () { currentUtter = null; resolve(true); };
       u.onerror = function () { currentUtter = null; resolve(false); };
       currentUtter = u;
@@ -65,7 +80,7 @@
     if (!SR) { if (handlers.onerror) handlers.onerror('unsupported'); return null; }
     stopListening();
     var r = new SR();
-    r.lang = 'en-US';
+    r.lang = window.DIALECT ? DIALECT.lang(Store.state.settings.dialect) : 'en-US';
     r.interimResults = true;
     r.continuous = false;
     r.maxAlternatives = 3;

@@ -19,9 +19,15 @@
 
 * { box-sizing: border-box; }
 
-html, body {
-  margin: 0;
+/* 배경은 문서 루트가 칠한다 — 테마의 질감이 화면 전체에 깔리도록 */
+html {
   background: var(--bg);
+  background-attachment: fixed;
+}
+
+body {
+  margin: 0;
+  background: transparent;
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard",
                "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
@@ -187,8 +193,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .score.good { border-color: rgba(111,191,139,.45); }
 .score.ok { border-color: rgba(224,160,90,.45); }
 .score.bad { border-color: rgba(226,112,95,.4); }
-.score-top { display: flex; align-items: baseline; gap: 10px; }
-.score-top b { font-size: 1.2rem; color: var(--accent); }
+.score-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.score-top b { font-size: 1.2rem; color: var(--accent); white-space: nowrap; flex: none; }
+.score.good .score-top b { color: var(--good); }
+.score.bad .score-top b { color: var(--bad); }
 .score-top span { font-size: .82rem; color: var(--ink-2); }
 .score-words { margin-top: 8px; line-height: 1.9; }
 .w-ok { color: var(--good); }
@@ -253,8 +261,107 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .toast.out { opacity: 0; }
 
+/* ---------- 도구 타일 ---------- */
+
+.sec-title { font-size: .8rem; letter-spacing: .08em; color: var(--ink-3); margin: 0 0 12px; text-transform: uppercase; }
+.sec-title.spaced { margin: 22px 0 10px; }
+
+.tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 6px; }
+.tool { display: grid; gap: 2px; text-align: left; padding: 14px; }
+.tool:hover { border-color: var(--accent); }
+.tool-i { font-size: 1.3rem; }
+.tool-t { font-weight: 600; font-size: .92rem; }
+.tool-d { font-size: .74rem; color: var(--ink-3); }
+
+/* ---------- 차트 · 히트맵 ---------- */
+
+.chart { display: flex; align-items: flex-end; gap: 3px; height: 96px; margin: 4px 0 10px; }
+.chart-col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; }
+.chart-bar { width: 100%; background: var(--accent); border-radius: 3px 3px 0 0; opacity: .8; min-height: 2px; }
+.chart-col.on .chart-bar { opacity: 1; }
+.chart-label { font-size: .6rem; color: var(--ink-3); margin-top: 4px; height: 12px; }
+
+.heat { display: grid; grid-template-columns: repeat(14, 1fr); gap: 3px; margin: 4px 0 10px; }
+.heat-cell { display: block; aspect-ratio: 1; border-radius: 2px; background: var(--card-2); }
+.heat-cell.l1 { background: color-mix(in srgb, var(--accent) 25%, var(--card-2)); }
+.heat-cell.l2 { background: color-mix(in srgb, var(--accent) 50%, var(--card-2)); }
+.heat-cell.l3 { background: color-mix(in srgb, var(--accent) 75%, var(--card-2)); }
+.heat-cell.l4 { background: var(--accent); }
+
+/* ---------- 약점 목록 ---------- */
+
+.weak-list { display: grid; gap: 8px; margin-bottom: 12px; }
+.weak-row {
+  display: grid; gap: 2px; padding: 10px 12px; cursor: pointer;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+}
+.weak-row:hover { border-color: var(--accent); }
+.weak-en { font-size: .95rem; }
+.weak-ko { font-size: .82rem; color: var(--ink-2); }
+.weak-meta { font-size: .72rem; color: var(--ink-3); }
+.weak-row .mini { justify-self: start; margin-top: 6px; }
+
+.plan-list { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: .88rem; }
+.plan-list li { margin-bottom: 6px; }
+.plan-list b { color: var(--accent); }
+
+/* ---------- 시험 ---------- */
+
+.exam-card .exam-q { font-size: 1.05rem; margin: 0 0 12px; }
+.choices { display: grid; gap: 8px; margin-top: 6px; }
+.choice {
+  display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: start;
+  text-align: left; background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 10px; padding: 12px 14px; font-size: .92rem;
+}
+.choice:hover { border-color: var(--accent); }
+.choice b { color: var(--ink-3); font-size: .8rem; padding-top: 2px; }
+.choice.right { border-color: var(--good); background: rgba(111,191,139,.12); }
+.choice.right b { color: var(--good); }
+.choice.wrong { border-color: var(--bad); background: rgba(226,112,95,.1); }
+.choice.wrong b { color: var(--bad); }
+.exam-script { margin-top: 10px; font-size: .82rem; color: var(--ink-2); }
+.exam-script p { margin: 3px 0; }
+.exam-script em { font-style: normal; color: var(--ink-3); margin-right: 6px; }
+.reveal { display: grid; gap: 10px; }
+
+/* ---------- 문법 드릴 ---------- */
+
+.drill-q { font-size: 1.1rem; margin: 0 0 6px; line-height: 1.6; }
+.drill-ko { font-size: .85rem; color: var(--ink-2); margin: 0 0 14px; }
+.drill-input {
+  width: 100%; padding: 12px 14px; font: inherit; font-size: 1rem;
+  background: var(--bg-2); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px;
+}
+.drill-input:focus { outline: none; border-color: var(--accent); }
+
+/* ---------- 페르소나 ---------- */
+
+.persona-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 4px; }
+.persona-fold { margin-bottom: 14px; }
+.persona-fold summary {
+  cursor: pointer; font-size: .8rem; color: var(--ink-3);
+  padding: 6px 0; list-style: none;
+}
+.persona-fold summary::-webkit-details-marker { display: none; }
+.persona-fold summary::before { content: '▸ '; }
+.persona-fold[open] summary::before { content: '▾ '; }
+
+/* ---------- 폼 ---------- */
+
+.field input[type=text], .field textarea {
+  display: block; width: 100%; margin-top: 6px; padding: 10px 12px;
+  background: var(--bg-2); color: var(--ink); font: inherit;
+  border: 1px solid var(--line); border-radius: 8px;
+}
+.field textarea { resize: vertical; min-height: 90px; font-size: .82rem; }
+.field input[type=text]:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+
 @media (max-width: 420px) {
   .hero-title { font-size: 1.5rem; }
   .stat-num { font-size: 1.25rem; }
   .fc-en { font-size: 1.15rem; }
+  .tool-grid { grid-template-columns: 1fr 1fr; }
+  .heat { grid-template-columns: repeat(14, 1fr); }
 }
