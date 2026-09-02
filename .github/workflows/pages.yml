@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+
+# 휴대폰에서 쓰려면 https로 올라가 있어야 한다.
+# 음성 인식은 https 또는 localhost에서만 마이크가 열리기 때문이다.
+
+on:
+  push:
+    branches: [main, claude/native-english-conversation-app-bfesvr]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 학습 내용을 JSON으로 뽑는다 — n8n이 이 파일을 읽어 매일 아침 발송한다
+      - name: Export learning data
+        run: node tools/export-json.js
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp index.html manifest.webmanifest sw.js _site/
+          cp -r assets js data _site/
+          touch _site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

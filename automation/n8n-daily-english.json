@@ -1,0 +1,160 @@
+{
+  "name": "오늘의 영어 — 매일 아침 발송",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "triggerAtHour": 8,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000001",
+      "name": "매일 아침 8시",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -320,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://kumpro.github.io/hykai/data/expressions.json",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": false
+            }
+          }
+        }
+      },
+      "id": "a1000000-0000-4000-8000-000000000002",
+      "name": "표현 목록 가져오기",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "/* 오늘 보낼 표현을 고른다.\n * 앱의 복습 기록은 브라우저 안에만 있어 여기서 읽을 수 없다.\n * 대신 날짜를 씨앗으로 삼아 전체 목록을 순서대로 회전시킨다 —\n * 매일 다른 묶음이 오고, 한 바퀴 돌면 다시 처음으로 온다. */\nconst bundle = $input.first().json;\nconst items = bundle.items || [];\nif (!items.length) throw new Error('expressions.json 을 읽지 못했다');\n\nconst COUNT = 12;\nconst epochDay = Math.floor(Date.now() / 86400000);\nconst start = (epochDay * COUNT) % items.length;\n\nconst pick = [];\nfor (let i = 0; i < COUNT; i++) pick.push(items[(start + i) % items.length]);\n\nconst dateLabel = new Date().toLocaleDateString('ko-KR', {\n  timeZone: 'Asia/Seoul', month: 'long', day: 'numeric', weekday: 'short'\n});\n\nconst text = '[오늘의 영어 ' + dateLabel + ']\\n\\n' +\n  pick.map((it, i) =>\n    (i + 1) + '. ' + it.en + '\\n   ' + it.ko + (it.note ? '\\n   · ' + it.note : '')\n  ).join('\\n\\n') +\n  '\\n\\n— 전체 ' + bundle.count + '개 중 ' + COUNT + '개';\n\nconst html =\n  '<div style=\"font-family:-apple-system,\\'Apple SD Gothic Neo\\',sans-serif;max-width:600px\">' +\n  '<h2 style=\"margin:0 0 4px\">오늘의 영어</h2>' +\n  '<p style=\"color:#888;margin:0 0 20px;font-size:14px\">' + dateLabel + '</p>' +\n  pick.map((it) =>\n    '<div style=\"border-left:3px solid #e0a05a;padding:2px 0 2px 14px;margin-bottom:18px\">' +\n    '<div style=\"font-size:17px;font-weight:600\">' + it.en + '</div>' +\n    '<div style=\"color:#555;font-size:14px;margin-top:3px\">' + it.ko + '</div>' +\n    (it.note ? '<div style=\"color:#999;font-size:12px;margin-top:5px\">' + it.note + '</div>' : '') +\n    '<div style=\"color:#bbb;font-size:11px;margin-top:5px\">' + it.modeTitle + ' · ' + it.scene + '</div>' +\n    '</div>'\n  ).join('') +\n  '<p style=\"color:#aaa;font-size:12px\">소리 내어 세 번씩 읽고, 앱에서 롤플레이로 확인하자.</p>' +\n  '</div>';\n\n/* 카카오 텍스트 템플릿은 200자 제한이 있다. 세 개만 짧게 보내고 나머지는 앱에서. */\nconst short = ('오늘의 영어 ' + dateLabel + '\\n\\n' +\n  pick.slice(0, 3).map((it) => '· ' + it.en + ' — ' + it.ko).join('\\n')).slice(0, 185);\n\nreturn [{ json: { text, html, short, dateLabel, count: COUNT } }];"
+      },
+      "id": "a1000000-0000-4000-8000-000000000003",
+      "name": "오늘의 12개 고르기",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        120,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "받는사람@example.com",
+        "subject": "=오늘의 영어 · {{ $json.dateLabel }}",
+        "emailType": "html",
+        "message": "={{ $json.html }}",
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000004",
+      "name": "Gmail로 보내기",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        360,
+        -110
+      ],
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://kapi.kakao.com/v2/api/talk/memo/default/send",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $env.KAKAO_ACCESS_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "template_object",
+              "value": "={{ JSON.stringify({ object_type: \"text\", text: $json.short, link: { web_url: \"https://kumpro.github.io/hykai/\", mobile_web_url: \"https://kumpro.github.io/hykai/\" }, button_title: \"앱에서 이어하기\" }) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1000000-0000-4000-8000-000000000005",
+      "name": "카카오톡 나에게 보내기",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        110
+      ]
+    }
+  ],
+  "connections": {
+    "매일 아침 8시": {
+      "main": [
+        [
+          {
+            "node": "표현 목록 가져오기",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "표현 목록 가져오기": {
+      "main": [
+        [
+          {
+            "node": "오늘의 12개 고르기",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "오늘의 12개 고르기": {
+      "main": [
+        [
+          {
+            "node": "Gmail로 보내기",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "카카오톡 나에게 보내기",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Seoul"
+  },
+  "pinData": {}
+}

@@ -1,0 +1,1144 @@
+{
+  "generated": "2026-09-02",
+  "count": 112,
+  "modes": [
+    {
+      "id": "daily",
+      "title": "일상회화"
+    },
+    {
+      "id": "travel",
+      "title": "여행회화"
+    },
+    {
+      "id": "film",
+      "title": "영화 비즈니스 회화"
+    }
+  ],
+  "items": [
+    {
+      "id": "daily/daily-coffee/0",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "카페에서 주문하고 잡담하기",
+      "en": "How's it going?",
+      "ko": "잘 지내?",
+      "note": "가장 흔한 캐주얼 인사. 진짜 안부를 묻는 게 아니라 인사말이다."
+    },
+    {
+      "id": "daily/daily-coffee/1",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "카페에서 주문하고 잡담하기",
+      "en": "Can't complain.",
+      "ko": "뭐, 나쁘지 않아.",
+      "note": "\"좋다\"고 말하기 애매할 때 쓰는 어른스러운 대답."
+    },
+    {
+      "id": "daily/daily-coffee/2",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "카페에서 주문하고 잡담하기",
+      "en": "I'll do a large latte.",
+      "ko": "라떼 라지로 할게요.",
+      "note": "주문할 때 do를 쓰면 훨씬 부드럽다."
+    },
+    {
+      "id": "daily/daily-coffee/3",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "카페에서 주문하고 잡담하기",
+      "en": "You got it.",
+      "ko": "알겠어요 / 그럼요.",
+      "note": "점원, 동료 모두에게 쓰는 가벼운 수락."
+    },
+    {
+      "id": "daily/daily-coffee/4",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "카페에서 주문하고 잡담하기",
+      "en": "No rush.",
+      "ko": "천천히 하세요.",
+      "note": "기다림에 여유를 보여주는 배려 표현."
+    },
+    {
+      "id": "daily/daily-coffee/5",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "카페에서 주문하고 잡담하기",
+      "en": "Have a good one!",
+      "ko": "좋은 하루 보내세요!",
+      "note": "\"Have a good day\"의 구어체. 저녁에도 쓸 수 있다."
+    },
+    {
+      "id": "daily/daily-catchup/0",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "오랜만에 만난 친구와 근황 나누기",
+      "en": "It's been forever.",
+      "ko": "진짜 오랜만이다.",
+      "note": "과장 표현이지만 일상에서 매우 흔하다."
+    },
+    {
+      "id": "daily/daily-catchup/1",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "오랜만에 만난 친구와 근황 나누기",
+      "en": "What have you been up to?",
+      "ko": "요즘 뭐 하고 지냈어?",
+      "note": "근황을 묻는 가장 자연스러운 문장."
+    },
+    {
+      "id": "daily/daily-catchup/2",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "오랜만에 만난 친구와 근황 나누기",
+      "en": "Same old, same old.",
+      "ko": "늘 그렇지 뭐.",
+      "note": "특별한 일 없을 때의 정석 대답."
+    },
+    {
+      "id": "daily/daily-catchup/3",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "오랜만에 만난 친구와 근황 나누기",
+      "en": "Tell me about it.",
+      "ko": "내 말이 / 말도 마.",
+      "note": "\"나한테 말해봐\"가 아니라 강한 공감이다. 헷갈리기 쉬움."
+    },
+    {
+      "id": "daily/daily-catchup/4",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "오랜만에 만난 친구와 근황 나누기",
+      "en": "I've been swamped.",
+      "ko": "일에 파묻혀 살았어.",
+      "note": "busy보다 강도가 세고 원어민이 훨씬 자주 쓴다."
+    },
+    {
+      "id": "daily/daily-catchup/5",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "오랜만에 만난 친구와 근황 나누기",
+      "en": "I'm getting there.",
+      "ko": "조금씩 되어가고 있어.",
+      "note": "완성 전 상태를 긍정적으로 말하는 방법."
+    },
+    {
+      "id": "daily/daily-catchup/6",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "오랜만에 만난 친구와 근황 나누기",
+      "en": "Good for you.",
+      "ko": "잘됐다 / 잘하고 있네.",
+      "note": "톤이 중요하다. 밋밋하게 말하면 비꼬는 뉘앙스가 된다."
+    },
+    {
+      "id": "daily/daily-family/0",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "가족과 저녁 식탁에서",
+      "en": "Give me a sec.",
+      "ko": "잠깐만.",
+      "note": "second를 sec으로 줄여 말하는 게 기본이다."
+    },
+    {
+      "id": "daily/daily-family/1",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "가족과 저녁 식탁에서",
+      "en": "How was your day?",
+      "ko": "오늘 하루 어땠어?",
+      "note": "가족 대화의 문을 여는 표준 문장."
+    },
+    {
+      "id": "daily/daily-family/2",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "가족과 저녁 식탁에서",
+      "en": "Did you hear back from them?",
+      "ko": "그쪽에서 연락 왔어?",
+      "note": "이메일·지원 결과 등 회신을 묻는 표현."
+    },
+    {
+      "id": "daily/daily-family/3",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "가족과 저녁 식탁에서",
+      "en": "Fingers crossed.",
+      "ko": "잘되길 빌어.",
+      "note": "손가락을 꼬는 제스처에서 온 관용구."
+    },
+    {
+      "id": "daily/daily-family/4",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "가족과 저녁 식탁에서",
+      "en": "We'll see.",
+      "ko": "두고 봐야지.",
+      "note": "확답을 피하며 여지를 남기는 어른의 화법."
+    },
+    {
+      "id": "daily/daily-family/5",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "가족과 저녁 식탁에서",
+      "en": "Can I be excused?",
+      "ko": "먼저 일어나도 될까요?",
+      "note": "식탁 예절 표현. 아이들이 특히 자주 쓴다."
+    },
+    {
+      "id": "daily/daily-notwell/0",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "컨디션이 안 좋을 때",
+      "en": "You look a little off.",
+      "ko": "오늘 좀 안 좋아 보여.",
+      "note": "컨디션·기분이 평소 같지 않을 때."
+    },
+    {
+      "id": "daily/daily-notwell/1",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "컨디션이 안 좋을 때",
+      "en": "I'm running on fumes.",
+      "ko": "완전히 방전됐어.",
+      "note": "50대의 체력 고갈을 표현하기에 가장 그럴듯한 문장."
+    },
+    {
+      "id": "daily/daily-notwell/2",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "컨디션이 안 좋을 때",
+      "en": "My head won't shut off.",
+      "ko": "생각이 멈추질 않아.",
+      "note": "불면·잡념을 설명하는 원어민식 표현."
+    },
+    {
+      "id": "daily/daily-notwell/3",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "컨디션이 안 좋을 때",
+      "en": "I keep meaning to.",
+      "ko": "계속 하려고는 했어.",
+      "note": "미루고 있는 일을 인정하는 부드러운 방식."
+    },
+    {
+      "id": "daily/daily-notwell/4",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "컨디션이 안 좋을 때",
+      "en": "Take it easy.",
+      "ko": "무리하지 마 / 살살해.",
+      "note": "작별 인사로도 쓰인다."
+    },
+    {
+      "id": "daily/daily-notwell/5",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "컨디션이 안 좋을 때",
+      "en": "I'll call it an early night.",
+      "ko": "오늘은 일찍 자야겠어.",
+      "note": "\"call it a day\"의 밤 버전."
+    },
+    {
+      "id": "daily/daily-plans/0",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "약속 잡고, 미루고, 취소하기",
+      "en": "Are you free this weekend?",
+      "ko": "이번 주말에 시간 돼?",
+      "note": "가장 무난한 약속 제안."
+    },
+    {
+      "id": "daily/daily-plans/1",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "약속 잡고, 미루고, 취소하기",
+      "en": "What day were you thinking?",
+      "ko": "무슨 요일 생각했어?",
+      "note": "거절 여지를 남기면서 조율하는 문장."
+    },
+    {
+      "id": "daily/daily-plans/2",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "약속 잡고, 미루고, 취소하기",
+      "en": "I'll get back to you.",
+      "ko": "다시 연락줄게.",
+      "note": "업무에서도 그대로 쓰인다."
+    },
+    {
+      "id": "daily/daily-plans/3",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "약속 잡고, 미루고, 취소하기",
+      "en": "Something came up.",
+      "ko": "갑자기 일이 생겼어.",
+      "note": "구체적 설명 없이 정중히 미룰 수 있는 표현."
+    },
+    {
+      "id": "daily/daily-plans/4",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "약속 잡고, 미루고, 취소하기",
+      "en": "Any chance we could push it to Sunday?",
+      "ko": "일요일로 미룰 수 있을까?",
+      "note": "\"push it to~\"가 일정 연기의 자연스러운 동사."
+    },
+    {
+      "id": "daily/daily-plans/5",
+      "mode": "daily",
+      "modeTitle": "일상회화",
+      "scene": "약속 잡고, 미루고, 취소하기",
+      "en": "I owe you one.",
+      "ko": "내가 신세 졌다.",
+      "note": "관계를 부드럽게 만드는 마무리 표현."
+    },
+    {
+      "id": "travel/travel-immigration/0",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "입국심사와 공항",
+      "en": "I'm here on business.",
+      "ko": "업무차 왔습니다.",
+      "note": "관광이면 \"I'm here on vacation.\""
+    },
+    {
+      "id": "travel/travel-immigration/1",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "입국심사와 공항",
+      "en": "I fly back on the 21st.",
+      "ko": "21일에 돌아갑니다.",
+      "note": "귀국 일정을 먼저 밝히면 심사가 짧아진다."
+    },
+    {
+      "id": "travel/travel-immigration/2",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "입국심사와 공항",
+      "en": "I've got a hotel booked downtown.",
+      "ko": "시내에 호텔을 예약해뒀습니다.",
+      "note": "\"I have~\"보다 \"I've got~\"이 구어적이다."
+    },
+    {
+      "id": "travel/travel-immigration/3",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "입국심사와 공항",
+      "en": "Nothing to declare.",
+      "ko": "신고할 물품 없습니다.",
+      "note": "세관 통과 시 그대로 사용."
+    },
+    {
+      "id": "travel/travel-immigration/4",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "입국심사와 공항",
+      "en": "My connecting flight is at 3.",
+      "ko": "환승 비행기가 3시입니다.",
+      "note": "경유 시 반드시 필요한 단어가 connecting flight."
+    },
+    {
+      "id": "travel/travel-immigration/5",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "입국심사와 공항",
+      "en": "My luggage didn't come out.",
+      "ko": "수하물이 안 나왔어요.",
+      "note": "분실 신고는 baggage claim의 lost luggage counter에서."
+    },
+    {
+      "id": "travel/travel-hotel/0",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "호텔 체크인과 문제 해결",
+      "en": "I have a reservation under Kim.",
+      "ko": "김으로 예약했습니다.",
+      "note": "호텔·식당 모두 동일한 형식."
+    },
+    {
+      "id": "travel/travel-hotel/1",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "호텔 체크인과 문제 해결",
+      "en": "That works.",
+      "ko": "그거면 됩니다.",
+      "note": "수락의 가장 간결한 표현."
+    },
+    {
+      "id": "travel/travel-hotel/2",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "호텔 체크인과 문제 해결",
+      "en": "Sorry to bother you, but…",
+      "ko": "번거롭게 해서 죄송한데요…",
+      "note": "클레임의 첫 문장으로 최고. 상대의 방어심을 낮춘다."
+    },
+    {
+      "id": "travel/travel-hotel/3",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "호텔 체크인과 문제 해결",
+      "en": "Would it be possible to switch rooms?",
+      "ko": "방을 바꿀 수 있을까요?",
+      "note": "\"Can I~\"보다 훨씬 정중하다."
+    },
+    {
+      "id": "travel/travel-hotel/4",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "호텔 체크인과 문제 해결",
+      "en": "Could you put me down for a late checkout?",
+      "ko": "레이트 체크아웃으로 올려주시겠어요?",
+      "note": "예약 명단에 올려달라는 관용 표현."
+    },
+    {
+      "id": "travel/travel-hotel/5",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "호텔 체크인과 문제 해결",
+      "en": "Is breakfast included?",
+      "ko": "조식 포함인가요?",
+      "note": "체크인 시 반드시 확인할 문장."
+    },
+    {
+      "id": "travel/travel-restaurant/0",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "식당 주문과 컴플레인",
+      "en": "Still deciding.",
+      "ko": "아직 고르는 중이에요.",
+      "note": "메뉴판 앞에서 압박받을 때 쓸 두 단어."
+    },
+    {
+      "id": "travel/travel-restaurant/1",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "식당 주문과 컴플레인",
+      "en": "What would you recommend?",
+      "ko": "뭘 추천하시나요?",
+      "note": "현지 음식을 제대로 먹는 가장 빠른 길."
+    },
+    {
+      "id": "travel/travel-restaurant/2",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "식당 주문과 컴플레인",
+      "en": "Could I get the sauce on the side?",
+      "ko": "소스는 따로 주시겠어요?",
+      "note": "on the side = 따로 곁들여."
+    },
+    {
+      "id": "travel/travel-restaurant/3",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "식당 주문과 컴플레인",
+      "en": "I can't do anything too spicy.",
+      "ko": "너무 매운 건 못 먹어요.",
+      "note": "\"I can't eat~\"보다 부드럽다."
+    },
+    {
+      "id": "travel/travel-restaurant/4",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "식당 주문과 컴플레인",
+      "en": "I think there's been a mix-up.",
+      "ko": "주문이 바뀐 것 같아요.",
+      "note": "잘못을 지적하지 않으면서 바로잡는 최고의 문장."
+    },
+    {
+      "id": "travel/travel-restaurant/5",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "식당 주문과 컴플레인",
+      "en": "Could we get the check?",
+      "ko": "계산서 주시겠어요?",
+      "note": "영국에서는 check 대신 bill을 쓴다."
+    },
+    {
+      "id": "travel/travel-restaurant/6",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "식당 주문과 컴플레인",
+      "en": "Is service included?",
+      "ko": "봉사료 포함인가요?",
+      "note": "팁 문화권에서 반드시 확인할 것."
+    },
+    {
+      "id": "travel/travel-directions/0",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "길 찾기와 교통",
+      "en": "Could you point me toward the station?",
+      "ko": "역이 어느 쪽인가요?",
+      "note": "\"Where is~\"보다 정중하고 원어민스럽다."
+    },
+    {
+      "id": "travel/travel-directions/1",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "길 찾기와 교통",
+      "en": "Is it walkable from here?",
+      "ko": "여기서 걸어갈 만한가요?",
+      "note": "walkable 한 단어로 거리 감각을 물을 수 있다."
+    },
+    {
+      "id": "travel/travel-directions/2",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "길 찾기와 교통",
+      "en": "Ten minutes, tops.",
+      "ko": "길어야 10분.",
+      "note": "tops = 최대치. 문장 끝에 붙인다."
+    },
+    {
+      "id": "travel/travel-directions/3",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "길 찾기와 교통",
+      "en": "Does that line run this late?",
+      "ko": "그 노선 이 시간에도 다녀요?",
+      "note": "지하철·버스 운행을 묻는 표현."
+    },
+    {
+      "id": "travel/travel-directions/4",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "길 찾기와 교통",
+      "en": "Do I need to change trains?",
+      "ko": "환승해야 하나요?",
+      "note": "transfer와 함께 외워둘 것."
+    },
+    {
+      "id": "travel/travel-directions/5",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "길 찾기와 교통",
+      "en": "Where to?",
+      "ko": "어디로 가세요?",
+      "note": "택시 기사의 표준 첫마디. 듣기용으로 익혀둘 것."
+    },
+    {
+      "id": "travel/travel-trouble/0",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "쇼핑, 환불, 그리고 사고 대응",
+      "en": "Just browsing, thanks.",
+      "ko": "그냥 둘러보는 중이에요.",
+      "note": "점원의 접근을 정중히 거절하는 표준 문장."
+    },
+    {
+      "id": "travel/travel-trouble/1",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "쇼핑, 환불, 그리고 사고 대응",
+      "en": "Do you have this in a medium?",
+      "ko": "이거 미디엄 있나요?",
+      "note": "\"in a + 사이즈\" 구조를 통째로 기억할 것."
+    },
+    {
+      "id": "travel/travel-trouble/2",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "쇼핑, 환불, 그리고 사고 대응",
+      "en": "I'd like to return this.",
+      "ko": "반품하고 싶습니다.",
+      "note": "교환은 exchange, 환불은 refund."
+    },
+    {
+      "id": "travel/travel-trouble/3",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "쇼핑, 환불, 그리고 사고 대응",
+      "en": "It just didn't fit right.",
+      "ko": "잘 안 맞았어요.",
+      "note": "이유를 길게 말할 필요 없다."
+    },
+    {
+      "id": "travel/travel-trouble/4",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "쇼핑, 환불, 그리고 사고 대응",
+      "en": "I need to report a lost passport.",
+      "ko": "여권 분실 신고를 해야 합니다.",
+      "note": "위급 상황에서 가장 먼저 나와야 할 문장."
+    },
+    {
+      "id": "travel/travel-trouble/5",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "쇼핑, 환불, 그리고 사고 대응",
+      "en": "My phone died.",
+      "ko": "휴대폰이 꺼졌어요.",
+      "note": "battery is dead와 같은 뜻의 구어체."
+    },
+    {
+      "id": "travel/travel-trouble/6",
+      "mode": "travel",
+      "modeTitle": "여행회화",
+      "scene": "쇼핑, 환불, 그리고 사고 대응",
+      "en": "Could you write that down for me?",
+      "ko": "적어주시겠어요?",
+      "note": "알아듣기 어려울 때의 최후 수단이자 최선의 수단."
+    },
+    {
+      "id": "film/film-pitch/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "What's the hook?",
+      "ko": "후크가 뭐죠?",
+      "note": "피칭에서 반드시 나오는 질문. 답을 미리 문장으로 준비할 것."
+    },
+    {
+      "id": "film/film-pitch/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "It's a slow-burn drama.",
+      "ko": "서서히 고조되는 드라마입니다.",
+      "note": "slow-burn은 장르 톤을 한 단어로 전달한다."
+    },
+    {
+      "id": "film/film-pitch/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "Where does this play?",
+      "ko": "어느 시장에서 통하나요?",
+      "note": "play = 통하다, 먹히다. 배급 관점의 질문."
+    },
+    {
+      "id": "film/film-pitch/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "Think A meets B.",
+      "ko": "A에 B를 더한 느낌입니다.",
+      "note": "피칭의 고전 공식. 레퍼런스 두 개로 톤을 압축한다."
+    },
+    {
+      "id": "film/film-pitch/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "We're looking at low seven figures.",
+      "ko": "100만 달러대 초반을 보고 있습니다.",
+      "note": "seven figures = 100만 단위. 금액을 직접 말하지 않는 업계 화법."
+    },
+    {
+      "id": "film/film-pitch/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "It's contained.",
+      "ko": "규모가 작고 통제 가능합니다.",
+      "note": "저예산 기획을 매력적으로 만드는 핵심 형용사."
+    },
+    {
+      "id": "film/film-pitch/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "Is there anyone attached?",
+      "ko": "참여 확정된 사람이 있나요?",
+      "note": "attached / packaged는 기획 단계의 필수 용어."
+    },
+    {
+      "id": "film/film-pitch/7",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "피칭 미팅 — 로그라인부터 톤까지",
+      "en": "Can you send over the treatment?",
+      "ko": "트리트먼트 보내주시겠어요?",
+      "note": "이 말이 나오면 미팅은 성공이다."
+    },
+    {
+      "id": "film/film-festival/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제·마켓에서 네트워킹",
+      "en": "Sorry to jump in —",
+      "ko": "실례지만 끼어들자면요,",
+      "note": "낯선 무리에 합류할 때의 안전한 진입 문장."
+    },
+    {
+      "id": "film/film-festival/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제·마켓에서 네트워킹",
+      "en": "I'm a director out of Seoul.",
+      "ko": "서울에서 활동하는 감독입니다.",
+      "note": "\"from\"보다 \"out of\"가 업계 뉘앙스에 맞다."
+    },
+    {
+      "id": "film/film-festival/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제·마켓에서 네트워킹",
+      "en": "One line: …",
+      "ko": "한 줄로 말하면요…",
+      "note": "상대의 집중을 확보하는 프레이밍."
+    },
+    {
+      "id": "film/film-festival/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제·마켓에서 네트워킹",
+      "en": "We're putting the package together.",
+      "ko": "패키지를 구성 중입니다.",
+      "note": "기획 진행 단계를 프로페셔널하게 표현하는 법."
+    },
+    {
+      "id": "film/film-festival/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제·마켓에서 네트워킹",
+      "en": "I'm here to listen this year.",
+      "ko": "올해는 배우러 왔습니다.",
+      "note": "경력 전환기에 쓰기 좋은, 문을 여는 겸손."
+    },
+    {
+      "id": "film/film-festival/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제·마켓에서 네트워킹",
+      "en": "I'll keep an eye out.",
+      "ko": "관심 갖고 지켜볼게요.",
+      "note": "긍정적이지만 확약은 아닌 업계식 대답."
+    },
+    {
+      "id": "film/film-festival/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제·마켓에서 네트워킹",
+      "en": "Would it be alright if I followed up?",
+      "ko": "나중에 연락드려도 될까요?",
+      "note": "허락을 구하면 후속 메일의 회신율이 크게 오른다."
+    },
+    {
+      "id": "film/film-coprod/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "공동제작·예산 협상",
+      "en": "What does the budget look like as it stands?",
+      "ko": "현재 예산이 어떻게 되나요?",
+      "note": "as it stands = 지금 상태로는."
+    },
+    {
+      "id": "film/film-coprod/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "공동제작·예산 협상",
+      "en": "One-point-eight, all in.",
+      "ko": "전부 포함 180만입니다.",
+      "note": "금액을 말할 때 all in을 붙여 총액임을 분명히 한다."
+    },
+    {
+      "id": "film/film-coprod/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "공동제작·예산 협상",
+      "en": "How much of that is locked?",
+      "ko": "그중 확정된 건 얼마죠?",
+      "note": "locked ↔ soft. 자금 확정도를 묻는 핵심 단어."
+    },
+    {
+      "id": "film/film-coprod/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "공동제작·예산 협상",
+      "en": "What I can't move on is final cut.",
+      "ko": "최종 편집권만은 양보할 수 없습니다.",
+      "note": "감독이 반드시 익혀야 할 협상 문장."
+    },
+    {
+      "id": "film/film-coprod/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "공동제작·예산 협상",
+      "en": "Where do you see the flexibility on your end?",
+      "ko": "그쪽은 어디에 여지가 있나요?",
+      "note": "대립 대신 협력의 틀로 협상을 옮긴다."
+    },
+    {
+      "id": "film/film-coprod/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "공동제작·예산 협상",
+      "en": "We could bring post services in-kind.",
+      "ko": "후반작업을 현물로 지원할 수 있습니다.",
+      "note": "in-kind 투자는 저예산 영화의 현실적 해법."
+    },
+    {
+      "id": "film/film-coprod/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "공동제작·예산 협상",
+      "en": "Let me circle back Thursday.",
+      "ko": "목요일에 다시 말씀드리겠습니다.",
+      "note": "즉답을 피하면서 신뢰를 유지하는 표현."
+    },
+    {
+      "id": "film/film-set/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "현장 연출 — 스태프와 배우에게",
+      "en": "Let's take it from the top.",
+      "ko": "처음부터 다시 갑시다.",
+      "note": "리허설·테이크 재시작의 표준 표현."
+    },
+    {
+      "id": "film/film-set/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "현장 연출 — 스태프와 배우에게",
+      "en": "Let's go again for safety.",
+      "ko": "안전하게 한 번 더 갑시다.",
+      "note": "배우를 탓하지 않고 재촬영하는 방법."
+    },
+    {
+      "id": "film/film-set/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "현장 연출 — 스태프와 배우에게",
+      "en": "Can we get a little more separation?",
+      "ko": "간격을 좀 더 벌릴 수 있을까요?",
+      "note": "요청형 지시가 현장 분위기를 만든다."
+    },
+    {
+      "id": "film/film-set/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "현장 연출 — 스태프와 배우에게",
+      "en": "Let's live with that.",
+      "ko": "그건 감수하고 갑시다.",
+      "note": "완벽을 포기하고 진행하는 결단의 언어."
+    },
+    {
+      "id": "film/film-set/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "현장 연출 — 스태프와 배우에게",
+      "en": "Don't play the sadness. Let it sit.",
+      "ko": "슬픔을 연기하지 말고 그냥 두세요.",
+      "note": "배우 디렉팅의 핵심. 통째로 익혀둘 것."
+    },
+    {
+      "id": "film/film-set/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "현장 연출 — 스태프와 배우에게",
+      "en": "We're losing the light.",
+      "ko": "해가 넘어갑니다.",
+      "note": "야외 촬영의 시간 압박을 알리는 신호."
+    },
+    {
+      "id": "film/film-set/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "현장 연출 — 스태프와 배우에게",
+      "en": "That's a wrap.",
+      "ko": "촬영 종료합니다.",
+      "note": "현장에서 가장 듣기 좋은 두 단어."
+    },
+    {
+      "id": "film/film-sales/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "There's a lot to like here.",
+      "ko": "마음에 드는 지점이 많습니다.",
+      "note": "완전한 수락은 아닌, 업계식 긍정 평가."
+    },
+    {
+      "id": "film/film-sales/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "What's your read on it?",
+      "ko": "어떻게 보시나요?",
+      "note": "\"opinion\"보다 프로페셔널하게 들린다."
+    },
+    {
+      "id": "film/film-sales/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "It could cross over.",
+      "ko": "주류 관객으로 확장될 수 있습니다.",
+      "note": "아트하우스 영화의 상업적 가능성을 말하는 방식."
+    },
+    {
+      "id": "film/film-sales/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "What territories are you looking at?",
+      "ko": "어느 지역 판권을 보시나요?",
+      "note": "territory는 세일즈 대화의 기본 단위."
+    },
+    {
+      "id": "film/film-sales/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "Could we look at five with an option?",
+      "ko": "5년에 옵션을 붙이면 어떨까요?",
+      "note": "거절 대신 대안. 협상력을 유지하는 문장."
+    },
+    {
+      "id": "film/film-sales/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "What are you thinking on the MG?",
+      "ko": "최소보증금은 어떻게 보시나요?",
+      "note": "MG = Minimum Guarantee. 반드시 알아야 할 약어."
+    },
+    {
+      "id": "film/film-sales/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "How does the back end split?",
+      "ko": "수익 배분은 어떻게 되나요?",
+      "note": "back end = 회수 이후 수익. 계약의 실질적 핵심."
+    },
+    {
+      "id": "film/film-sales/7",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배급·세일즈 미팅과 계약 용어",
+      "en": "I'll loop in our lawyer.",
+      "ko": "변호사를 참여시키겠습니다.",
+      "note": "loop in은 모든 비즈니스 상황에서 통용된다."
+    },
+    {
+      "id": "hooks/core/0",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "The thing is, …",
+      "ko": "사실 문제는 말이죠,",
+      "note": "변명이나 사정을 꺼낼 때. 상대를 준비시키고 본론으로 들어간다.",
+      "examples": [
+        {
+          "en": "The thing is, I've already committed to another project.",
+          "ko": "사실 문제는, 다른 프로젝트를 이미 맡기로 했다는 겁니다."
+        },
+        {
+          "en": "The thing is, we don't have the budget for that this year.",
+          "ko": "문제는 올해 그럴 예산이 없다는 거예요."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/1",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "Here's the thing —",
+      "ko": "이게 핵심인데요,",
+      "note": "\"The thing is\"보다 단호하다. 상대의 오해를 바로잡을 때 쓴다.",
+      "examples": [
+        {
+          "en": "Here's the thing — the script isn't the problem. The budget is.",
+          "ko": "핵심은 이겁니다. 시나리오가 문제가 아니라 예산이 문제예요."
+        },
+        {
+          "en": "Here's the thing — I've done this for twenty years.",
+          "ko": "이게 핵심인데요, 저는 이 일을 20년 했습니다."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/2",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "Any chance you could …?",
+      "ko": "혹시 ~해주실 수 있을까요?",
+      "note": "부탁의 문턱을 낮추는 최고의 문장. 거절해도 서로 민망하지 않다.",
+      "examples": [
+        {
+          "en": "Any chance you could send that over by Friday?",
+          "ko": "혹시 금요일까지 보내주실 수 있을까요?"
+        },
+        {
+          "en": "Any chance we could push the meeting an hour?",
+          "ko": "혹시 회의를 한 시간 미룰 수 있을까요?"
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/3",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "I was wondering if …",
+      "ko": "~인지 여쭤보고 싶었는데요",
+      "note": "과거진행형이 정중함을 만든다. 처음 연락하는 메일과 통화에 특히 좋다.",
+      "examples": [
+        {
+          "en": "I was wondering if you had a moment this week.",
+          "ko": "이번 주에 시간이 되시는지 여쭤보고 싶었습니다."
+        },
+        {
+          "en": "I was wondering if the position is still open.",
+          "ko": "그 자리가 아직 열려 있는지 궁금했습니다."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/4",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "That said, …",
+      "ko": "그렇긴 한데,",
+      "note": "앞말을 인정하고 반대편을 꺼낸다. 회의에서 반대할 때의 표준 완충재.",
+      "examples": [
+        {
+          "en": "That said, I'd still want final cut.",
+          "ko": "그렇긴 해도, 최종 편집권은 여전히 원합니다."
+        },
+        {
+          "en": "That said, the numbers don't support it.",
+          "ko": "그렇긴 한데, 숫자가 뒷받침해주지 않습니다."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/5",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "To be fair, …",
+      "ko": "공정하게 말하면,",
+      "note": "상대편 입장을 인정하며 균형을 잡는다. 품위 있게 들린다.",
+      "examples": [
+        {
+          "en": "To be fair, they gave us very little time.",
+          "ko": "공정하게 말하면, 그쪽도 시간을 거의 안 줬어요."
+        },
+        {
+          "en": "To be fair, the first cut was too long.",
+          "ko": "솔직히 말하면 첫 편집본이 길긴 했습니다."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/6",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "If anything, …",
+      "ko": "오히려 ~에 가깝다",
+      "note": "상대의 짐작을 뒤집는다. \"그 반대\"라고 말하는 세련된 방식.",
+      "examples": [
+        {
+          "en": "If anything, it's too quiet, not too loud.",
+          "ko": "오히려 너무 조용해요. 시끄러운 게 아니라."
+        },
+        {
+          "en": "If anything, the delay helped the script.",
+          "ko": "오히려 지연된 게 시나리오에 도움이 됐습니다."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/7",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "Not that I know of.",
+      "ko": "내가 아는 한은 아니에요.",
+      "note": "모른다는 걸 인정하면서 단정하지 않는다. 통째로 외울 것.",
+      "examples": [
+        {
+          "en": "\"Has anyone else been attached?\" \"Not that I know of.\"",
+          "ko": "\"다른 사람이 붙었나요?\" \"제가 아는 한은 아닙니다.\""
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/8",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "It's not that I don't …, it's just …",
+      "ko": "~하기 싫은 게 아니라, 다만 ~",
+      "note": "거절을 부드럽게 만드는 이중 구조. 관계를 지키면서 선을 긋는다.",
+      "examples": [
+        {
+          "en": "It's not that I don't like the idea, it's just too early.",
+          "ko": "아이디어가 싫은 게 아니라, 다만 너무 이릅니다."
+        },
+        {
+          "en": "It's not that I don't trust him, it's just a big call.",
+          "ko": "그를 못 믿는 게 아니라, 다만 큰 결정이라서요."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/9",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "Last I heard, …",
+      "ko": "마지막으로 듣기로는,",
+      "note": "정보가 오래됐을 수 있다는 안전장치를 미리 깔아둔다.",
+      "examples": [
+        {
+          "en": "Last I heard, they were still in post.",
+          "ko": "마지막으로 듣기로는 아직 후반작업 중이었어요."
+        },
+        {
+          "en": "Last I heard, the fund closes in March.",
+          "ko": "제가 듣기로는 그 펀드가 3월에 마감입니다."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/10",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "I'll be honest with you —",
+      "ko": "솔직히 말씀드리면,",
+      "note": "나쁜 소식이나 진짜 속내를 꺼내기 직전에 놓는다. 신뢰를 산다.",
+      "examples": [
+        {
+          "en": "I'll be honest with you — we're not there yet.",
+          "ko": "솔직히 말씀드리면, 아직 거기까진 못 갔습니다."
+        },
+        {
+          "en": "I'll be honest with you — that number scares me.",
+          "ko": "솔직히 그 숫자는 부담스럽습니다."
+        }
+      ]
+    },
+    {
+      "id": "hooks/core/11",
+      "mode": "hooks",
+      "modeTitle": "후크 문구",
+      "scene": "문장 접착제",
+      "en": "What I can't move on is …",
+      "ko": "제가 양보할 수 없는 건 ~입니다",
+      "note": "협상에서 선을 긋는 가장 단단하고도 정중한 문장.",
+      "examples": [
+        {
+          "en": "What I can't move on is the release window.",
+          "ko": "개봉 시기만은 양보할 수 없습니다."
+        },
+        {
+          "en": "What I can't move on is who cuts the film.",
+          "ko": "누가 편집하느냐만은 양보할 수 없습니다."
+        }
+      ]
+    }
+  ]
+}

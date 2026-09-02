@@ -3,7 +3,18 @@
 (function () {
   'use strict';
 
-  var INTERVALS = [0, 1, 3, 7, 16, 35]; // box 1~5 → 다음 복습까지 일수
+  /* box 1~5 → 다음 복습까지 일수.
+   * standard: 널리 쓰이는 라이트너 간격.
+   * dense: 초반을 촘촘하게 가져간 변형. 첫 인출이 약할 때 1·2단계에서 더 자주 만난다.
+   *        대신 4·5단계 간격은 그대로 벌려 총 복습량이 폭증하지 않게 잡았다. */
+  var PACES = {
+    standard: [0, 1, 3, 7, 16, 35],
+    dense: [0, 1, 2, 4, 10, 24]
+  };
+
+  function intervals() {
+    return PACES[(Store.state.settings && Store.state.settings.pace) || 'standard'] || PACES.standard;
+  }
 
   function dayNumber(dateStr) {
     var p = (dateStr || Store.today()).split('-');
@@ -40,7 +51,7 @@
       c.box = 1;
       Store.state.daily.wrong = (Store.state.daily.wrong || 0) + 1;
     }
-    c.due = dayNumber() + INTERVALS[c.box];
+    c.due = dayNumber() + intervals()[c.box];
     Store.state.daily.cards += 1;
     Store.touchStreak();
     Store.save();
@@ -138,6 +149,7 @@
   window.SRS = {
     cardId: cardId, get: get, grade: grade, isDue: isDue,
     dueQueue: dueQueue, stats: stats, dayNumber: dayNumber,
-    lookup: lookup, weakest: weakest, forecast: forecast, boxSpread: boxSpread
+    lookup: lookup, weakest: weakest, forecast: forecast, boxSpread: boxSpread,
+    PACES: PACES, intervals: intervals
   };
 })();

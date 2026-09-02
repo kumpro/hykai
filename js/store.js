@@ -15,7 +15,10 @@
       hideKo: false,
       dialect: 'us',      // us | gb
       persona: 'man',     // personas.js의 id
-      theme: 'auto'       // auto = 모드별 시대 테마 자동 적용
+      theme: 'auto',      // auto = 모드별 시대 테마 자동 적용
+      pace: 'standard',   // standard | dense (초반 촘촘)
+      packUrl: '',        // 비워두면 자동 갱신하지 않는다
+      packChecked: 0      // 마지막 확인 시각
     },
     custom: { scenes: [] },   // 로그라인으로 생성한 장면
     exams: [],                // 시험 응시 기록

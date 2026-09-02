@@ -666,6 +666,11 @@
           '<input id="rsel" type="range" min="0.6" max="1.1" step="0.05" value="' + (s.rate || 0.9) + '"></label>' +
         '<label class="field">하루 목표 (카드)' +
           '<input id="gsel" type="number" min="4" max="60" value="' + (Store.state.daily.goal || 12) + '"></label>' +
+        '<label class="field">복습 간격' +
+          '<select id="psel">' +
+            '<option value="standard"' + (s.pace !== 'dense' ? ' selected' : '') + '>표준 — 1·3·7·16·35일</option>' +
+            '<option value="dense"' + (s.pace === 'dense' ? ' selected' : '') + '>촘촘 — 1·2·4·10·24일</option>' +
+          '</select></label>' +
         '<div class="grade-row">' +
           '<button class="btn" id="slang">신조어 팩 갱신</button>' +
           '<button class="btn" id="digest">오늘 몫 내보내기</button>' +
@@ -697,6 +702,10 @@
       Store.state.daily.goal = Math.max(4, Math.min(60, parseInt(e.target.value, 10) || 12));
       Store.save();
     };
+    m.querySelector('#psel').onchange = function (e) {
+      s.pace = e.target.value; Store.save();
+      toast(e.target.value === 'dense' ? '초반 간격을 좁혔다. 다음 채점부터 적용된다.' : '표준 간격으로 되돌렸다.');
+    };
     m.querySelector('#slang').onclick = function () { back.remove(); openSlangImport(); };
     m.querySelector('#digest').onclick = function () { VIEWS.copyText(VIEWS.buildDigest()); };
     m.querySelector('#close').onclick = function () { back.remove(); go({}); };
@@ -716,7 +725,8 @@
       '<div class="modal card">' +
         '<h3>신조어 팩 갱신</h3>' +
         '<p class="hint">현재 버전 ' + esc(cur.version) + ' · ' + esc(cur.updated) + ' · ' + esc(cur.source) + '</p>' +
-        '<label class="field">팩 주소 (JSON)<input id="purl" type="text" placeholder="https://example.com/slang.json"></label>' +
+        '<label class="field">팩 주소 (JSON)<input id="purl" type="text" value="' + esc(Store.state.settings.packUrl || '') + '" placeholder="https://example.com/slang.json"></label>' +
+        '<label class="field auto-check"><input id="pauto" type="checkbox"' + (Store.state.settings.packUrl ? ' checked' : '') + '> 이 주소를 하루 한 번 자동으로 확인한다</label>' +
         '<label class="field">또는 JSON 직접 붙여넣기<textarea id="pjson" rows="6" placeholder=\'{"version":2,"updated":"2026-10-01","source":"직접 추가","items":[{"en":"...","ko":"...","note":"...","register":"work"}]}\'></textarea></label>' +
         '<div class="grade-row">' +
           '<button class="btn" id="pload">주소에서 불러오기</button>' +
@@ -747,7 +757,11 @@
     m.querySelector('#pload').onclick = function () {
       var url = m.querySelector('#purl').value.trim();
       if (!url) { toast('주소를 넣자.'); return; }
-      fetch(url).then(function (r) { return r.json(); })
+      // 자동 확인에 체크돼 있으면 주소를 기억해뒀다가 하루 한 번 스스로 확인한다
+      Store.state.settings.packUrl = m.querySelector('#pauto').checked ? url : '';
+      Store.state.settings.packChecked = 0;
+      Store.save();
+      fetch(url, { cache: 'no-cache' }).then(function (r) { return r.json(); })
         .then(function (j) { apply(j, url); })
         .catch(function () { toast('불러오지 못했다. 주소나 CORS 설정을 확인하자.'); });
     };
@@ -756,7 +770,9 @@
       catch (e) { toast('JSON을 읽지 못했다. 대괄호와 따옴표를 확인하자.'); }
     };
     m.querySelector('#pdefault').onclick = function () {
-      Store.state.slang = null; Store.save(); boot(); back.remove();
+      Store.state.slang = null;
+      Store.state.settings.packUrl = '';
+      Store.save(); boot(); back.remove();
       toast('기본 팩으로 되돌렸다.');
       go({});
     };
@@ -798,6 +814,15 @@
   Store.load();
   boot();
   render();
+
+  // 팩 자동 갱신은 화면을 먼저 띄운 뒤 뒤에서 조용히 돌린다
+  AUTOPACK.check({
+    onApplied: function (pack) {
+      boot();
+      if (view.name === 'home' || view.name === 'mode') render();
+      toast('신조어 팩이 버전 ' + pack.version + '으로 갱신됐다.');
+    }
+  });
 
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) { Speech.stop(); Speech.stopListening(); }
