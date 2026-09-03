@@ -180,6 +180,63 @@ window.VIEWS = (function () {
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
   }
 
+  /* ---- 학습 기록 백업과 복원 ----
+   * 기록이 이 기기의 localStorage에만 있다는 건, 폰을 바꾸거나 사이트 데이터를 지우면
+   * 그동안 쌓은 게 통째로 사라진다는 뜻이다. 파일 하나로 들고 다닐 수 있게 해둔다. */
+
+  function backupState() {
+    var payload = {
+      app: 'hykai-english',
+      backupVersion: 1,
+      exportedAt: new Date().toISOString(),
+      state: Store.state
+    };
+    downloadText('english-backup-' + Store.today() + '.json', JSON.stringify(payload, null, 2));
+    UI.toast('백업 파일을 저장했다. 메일로 보내두면 안전하다.');
+  }
+
+  function looksLikeState(s) {
+    return !!(s && typeof s === 'object' &&
+      s.cards && typeof s.cards === 'object' &&
+      s.settings && typeof s.settings === 'object' &&
+      s.daily && typeof s.daily === 'object');
+  }
+
+  function restoreState(onDone) {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+    input.onchange = function () {
+      var file = input.files && input.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        var parsed;
+        try { parsed = JSON.parse(reader.result); }
+        catch (e) { UI.toast('파일을 읽지 못했다. 백업 파일이 맞는지 확인하자.'); return; }
+
+        // 백업 파일이면 state를 꺼내고, 예전 형식이면 그 자체를 상태로 본다
+        var incoming = parsed && parsed.state ? parsed.state : parsed;
+        if (!looksLikeState(incoming)) { UI.toast('이 앱의 백업 파일이 아니다.'); return; }
+
+        var cardCount = Object.keys(incoming.cards).length;
+        var when = parsed.exportedAt ? parsed.exportedAt.slice(0, 10) : '날짜 미상';
+        if (!confirm(when + ' 백업 (' + cardCount + '장)으로 되돌린다.\n지금 이 기기의 기록은 사라진다. 계속할까?')) return;
+
+        try {
+          localStorage.setItem('hykai-english-v1', JSON.stringify(incoming));
+        } catch (e) {
+          UI.toast('저장 공간이 부족해 복원하지 못했다.');
+          return;
+        }
+        if (onDone) onDone();
+        location.reload();
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+
   /* ============ 듣기 시험 ============ */
 
   var exam = null;
@@ -292,12 +349,19 @@ window.VIEWS = (function () {
     playRow.appendChild(playBtn); playRow.appendChild(slowBtn);
     card.appendChild(playRow);
 
+    /* 대화 지문은 여러 줄을 이어 읽는다.
+     * 화면을 빠져나가면 Speech.stop()이 세대를 올리므로 그 자리에서 끊긴다. */
     function playAll(rate) {
       var i = 0;
+      var tok = Speech.token();
       (function next() {
-        if (i >= item.audio.length) return;
-        Speech.speak(UI.en(item.audio[i]), { persona: 'narrator', rate: rate || 0.85, ignorePersona: false })
-          .then(function () { i++; setTimeout(next, 300); });
+        if (i >= item.audio.length || !Speech.alive(tok)) return;
+        Speech.speak(UI.en(item.audio[i]), { persona: 'narrator', rate: rate || 0.85 })
+          .then(function () {
+            if (!Speech.alive(tok)) return;
+            i++;
+            setTimeout(next, 300);
+          });
       })();
     }
     playBtn.onclick = function () { playAll(); };
@@ -588,6 +652,7 @@ window.VIEWS = (function () {
     examHome: examHome, examRun: examRun,
     grammarHome: grammarHome, drillRun: drillRun,
     studio: studio,
-    buildDigest: buildDigest, copyText: copyText, mailDigest: mailDigest, downloadText: downloadText
+    buildDigest: buildDigest, copyText: copyText, mailDigest: mailDigest, downloadText: downloadText,
+    backupState: backupState, restoreState: restoreState, looksLikeState: looksLikeState
   };
 })();

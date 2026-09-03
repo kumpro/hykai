@@ -128,6 +128,93 @@ window.PACKS.film = {
       ]
     },
     {
+      id: 'film-cast',
+      title: '배우에게 제안하기',
+      titleEn: 'Approaching an actor',
+      situation: '원하는 배우와의 첫 자리. 돈이 아니라 역할로 설득해야 하는 대화.',
+      lines: [
+        { s: 'Actor', en: "My agent sent me the script. I read it twice.", ko: '에이전트가 시나리오 보내줬어요. 두 번 읽었습니다.', tip: '두 번 읽었다는 건 관심이 있다는 강한 신호다.' },
+        { s: 'You', en: "That means something. What stayed with you?", ko: '그건 의미가 있네요. 어떤 게 남으셨나요?', tip: '"What did you think?"보다 훨씬 좋은 질문. 인상에 남은 것을 묻는다.' },
+        { s: 'Actor', en: "The silence in the third act. He doesn't explain himself once.", ko: '3막의 침묵이요. 그가 한 번도 자기를 설명하지 않더군요.' },
+        { s: 'You', en: "That's exactly the part I can't compromise on.", ko: '바로 그 부분이 제가 타협할 수 없는 지점입니다.', tip: '배우가 짚은 것을 감독의 원칙으로 되받으면 신뢰가 생긴다.' },
+        { s: 'Actor', en: "How much of it is on the page versus what you'll find on the day?", ko: '어디까지가 대본에 있고, 어디부터가 현장에서 찾는 건가요?', tip: '연출 방식을 묻는 질문. 배우가 가장 알고 싶어 하는 것.' },
+        { s: 'You', en: "The structure is locked. The performance isn't. I want to find it with you.", ko: '구조는 확정입니다. 연기는 아니고요. 그건 함께 찾고 싶습니다.', tip: '통제와 여지를 동시에 보여주는 답. 외워둘 만하다.' },
+        { s: 'Actor', en: "I appreciate that. What's the shooting schedule looking like?", ko: '좋네요. 촬영 일정은 어떻게 되나요?' },
+        { s: 'You', en: "Twenty-six days in the spring. Six-day weeks, but your character is out by day eighteen.", ko: '봄에 26회차입니다. 주 6일이지만 그쪽 캐릭터는 18일차에 끝납니다.', tip: '배우의 실제 관심사는 총 기간이 아니라 자기 촬영 일수다.' },
+        { s: 'Actor', en: "I have to be honest — the offer is well below my quote.", ko: '솔직히 말씀드리면, 제안이 제 개런티보다 한참 낮습니다.', tip: 'quote = 배우의 통상 출연료. 반드시 알아야 할 단어.' },
+        { s: 'You', en: "I know. I can't fix that with money. I can only offer you the role.", ko: '압니다. 돈으로는 해결해드릴 수가 없어요. 드릴 수 있는 건 역할뿐입니다.', tip: '저예산 영화가 배우를 설득하는 유일한 정직한 문장.' },
+        { s: 'Actor', en: "Let me sit with it over the weekend.", ko: '주말 동안 생각해보겠습니다.', tip: '"sit with it"은 서둘러 결정하지 않고 곱씹어보다.' },
+        { s: 'You', en: "Take your time. And thank you for reading it twice.", ko: '천천히 보세요. 두 번 읽어주셔서 감사합니다.' }
+      ],
+      expressions: [
+        { en: 'What stayed with you?', ko: '어떤 게 기억에 남으셨나요?', note: '감상을 묻는 가장 좋은 질문. 상대가 진짜 읽었는지도 드러난다.' },
+        { en: "That's the part I can't compromise on.", ko: '그 부분은 타협할 수 없습니다.', note: '감독의 원칙을 밝히는 문장. 협상에서도 그대로 쓴다.' },
+        { en: "The structure is locked. The performance isn't.", ko: '구조는 확정, 연기는 열려 있습니다.', note: '통제와 여지를 동시에 보여주는 연출관.' },
+        { en: 'Your character is out by day eighteen.', ko: '그 배역은 18일차에 촬영이 끝납니다.', note: '배우가 실제로 궁금해하는 건 총 회차가 아니라 자기 일정이다.' },
+        { en: "The offer is below my quote.", ko: '제안이 제 개런티보다 낮습니다.', note: 'quote = 배우의 통상 출연료. 듣기용으로 반드시 알아둘 것.' },
+        { en: "I can only offer you the role.", ko: '제가 드릴 수 있는 건 역할뿐입니다.', note: '저예산이 가진 유일한 무기를 정직하게 내미는 말.' },
+        { en: 'Let me sit with it.', ko: '좀 더 생각해보겠습니다.', note: '거절도 수락도 아닌 상태. 재촉하면 잃는다.' }
+      ]
+    },
+    {
+      id: 'film-post',
+      title: '후반작업 — 색보정과 사운드',
+      titleEn: 'Post-production review',
+      situation: '색보정실과 사운드 믹싱룸. 20년 해온 일을 영어로 말해야 하는 자리.',
+      lines: [
+        { s: 'Colorist', en: "I've done a first pass. Take a look and tell me where it's off.", ko: '1차 작업했습니다. 보시고 어디가 어긋나는지 말씀해주세요.', tip: 'pass = 작업 회차. "first pass"는 초벌.' },
+        { s: 'You', en: "The skin tones are reading a little warm for me.", ko: '피부톤이 제 눈엔 좀 따뜻하게 읽히네요.', tip: '"read"는 화면에서 그렇게 보인다는 뜻. 색보정실의 기본 동사.' },
+        { s: 'Colorist', en: 'Want me to pull some red out globally, or just in the close-ups?', ko: '전체적으로 레드를 뺄까요, 클로즈업만 할까요?', tip: 'globally = 전체 샷에 일괄로.' },
+        { s: 'You', en: "Just the close-ups. The wides are doing what I want.", ko: '클로즈업만요. 와이드는 원하는 대로 나왔습니다.' },
+        { s: 'You', en: "Can we crush the blacks a touch in this sequence?", ko: '이 시퀀스에서 블랙을 조금만 더 눌러줄 수 있을까요?', tip: 'crush the blacks = 어두운 부분을 더 깊게. "a touch"는 아주 조금.' },
+        { s: 'Colorist', en: "We can, but we'll lose detail in the coat.", ko: '가능합니다만 코트의 디테일이 사라집니다.' },
+        { s: 'You', en: "I'll take that trade. The mood matters more than the fabric.", ko: '그 정도는 감수하겠습니다. 질감보다 분위기가 중요해요.', tip: '"I\'ll take that trade"는 손익을 알고 선택한다는 뜻.' },
+        { s: 'Mixer', en: "On the mix — the dialogue is fighting the score in scene forty.", ko: '믹스 쪽인데, 40씬에서 대사와 음악이 부딪힙니다.', tip: '"fighting"은 두 소리가 서로를 잡아먹는 상태.' },
+        { s: 'You', en: "Then duck the score. I'd rather lose the music than a word.", ko: '그럼 음악을 낮춰주세요. 단어 하나 잃느니 음악을 잃겠습니다.', tip: 'duck = 다른 소리를 위해 볼륨을 눌러주다. 사운드 현장의 필수 동사.' },
+        { s: 'Mixer', en: "Understood. And the room tone changes at the cut — want me to smooth it?", ko: '알겠습니다. 컷에서 룸톤이 튀는데 부드럽게 갈까요?', tip: 'room tone = 공간의 기본 소음. 편집점에서 튀면 티가 난다.' },
+        { s: 'You', en: "Please. Let's not let the audience hear the edit.", ko: '네. 관객이 편집을 듣게 하지는 맙시다.', tip: '이 한 문장이 후반작업의 원칙 전부를 담고 있다.' },
+        { s: 'Mixer', en: "I'll have a new version up by tomorrow morning.", ko: '내일 아침까지 새 버전 올려두겠습니다.' }
+      ],
+      expressions: [
+        { en: 'The skin tones are reading warm.', ko: '피부톤이 따뜻하게 보입니다.', note: 'read = 화면에서 그렇게 보이다. 색보정실의 핵심 동사.' },
+        { en: 'Can we crush the blacks a touch?', ko: '블랙을 조금만 더 눌러줄까요?', note: 'a touch = 아주 살짝. 미세 조정을 요청하는 표현.' },
+        { en: "I'll take that trade.", ko: '그 손해는 감수하겠습니다.', note: '무엇을 잃는지 알고 선택한다는 프로의 화법.' },
+        { en: 'The dialogue is fighting the score.', ko: '대사와 음악이 부딪힙니다.', note: '두 소리가 서로를 잡아먹는 상태.' },
+        { en: 'Duck the score under the line.', ko: '대사 밑으로 음악을 낮춰주세요.', note: 'duck = 다른 소리를 위해 볼륨을 눌러주다.' },
+        { en: 'The room tone changes at the cut.', ko: '편집점에서 룸톤이 튑니다.', note: 'room tone은 공간의 기본 소음. 후반작업 필수 용어.' },
+        { en: "Let's not let the audience hear the edit.", ko: '관객이 편집을 듣게 하지 맙시다.', note: '후반작업의 원칙을 한 문장으로 압축한 말.' }
+      ]
+    },
+    {
+      id: 'film-gv',
+      title: '영화제 관객과의 대화',
+      titleEn: 'Festival Q&A',
+      situation: '상영 직후 무대. 통역 없이 답해야 하는 순간이 온다.',
+      lines: [
+        { s: 'Moderator', en: "Congratulations on the premiere. Where did this story come from?", ko: '프리미어 축하합니다. 이 이야기는 어디서 왔나요?', tip: 'GV의 첫 질문은 거의 항상 이것이다. 답을 통째로 준비해둘 것.' },
+        { s: 'You', en: "I spent twenty years preparing to make a film, and never made one. That became the film.", ko: '20년을 영화 만들 준비만 하며 보냈고, 한 편도 못 만들었습니다. 그게 이 영화가 됐습니다.', tip: '개인적인 사실 하나가 어떤 설명보다 강하다.' },
+        { s: 'Moderator', en: "That's a hell of an origin. Let's open it up to the audience.", ko: '대단한 출발점이네요. 관객 질문 받겠습니다.' },
+        { s: 'Audience', en: "Why did you choose to shoot so much of it in one room?", ko: '왜 그렇게 많은 부분을 한 방에서 찍으셨나요?' },
+        { s: 'You', en: "Partly budget, honestly. But the limit turned out to be the point.", ko: '솔직히 절반은 예산 때문입니다. 그런데 그 제약이 결국 주제가 됐어요.', tip: '한계를 인정하면서 의미로 바꾸는 답. 관객이 가장 좋아한다.' },
+        { s: 'Audience', en: "Sorry, could you say more about the ending? I'm not sure I understood it.", ko: '죄송한데 결말에 대해 좀 더 말씀해주시겠어요? 이해를 못 한 것 같아서요.' },
+        { s: 'You', en: "I'd rather not explain it — that would take it away from you.", ko: '설명하지 않는 편이 낫겠습니다. 그러면 그 몫을 빼앗는 게 되니까요.', tip: '설명을 거절하면서도 무례하지 않은 문장. 감독의 정석 답변.' },
+        { s: 'You', en: "But I'll say this: he isn't lying at the end. That's the one thing I'd defend.", ko: '다만 이건 말씀드리죠. 마지막에 그는 거짓말하고 있지 않습니다. 그것만은 지키겠습니다.', tip: '전부 닫지 않고 하나만 열어주는 방식.' },
+        { s: 'Moderator', en: "We have time for one more.", ko: '한 분만 더 받겠습니다.' },
+        { s: 'Audience', en: "What's next for you?", ko: '다음 작품은 무엇인가요?' },
+        { s: 'You', en: "Something smaller, and sooner. I'm not waiting twenty years again.", ko: '더 작고, 더 빨리요. 다시 20년을 기다리지는 않을 겁니다.', tip: '유머와 결심을 함께 담은 마무리. 이런 답이 기억에 남는다.' },
+        { s: 'Moderator', en: "Please join me in thanking the director.", ko: '감독님께 박수 부탁드립니다.' }
+      ],
+      expressions: [
+        { en: 'Where did this story come from?', ko: '이 이야기는 어디서 왔나요?', note: 'GV의 첫 질문. 답을 문장으로 굳혀 외워둘 것.' },
+        { en: 'The limit turned out to be the point.', ko: '그 제약이 결국 주제가 됐습니다.', note: '저예산을 미학으로 바꿔 말하는 방법.' },
+        { en: "I'd rather not explain it.", ko: '설명하지 않는 편이 낫겠습니다.', note: '거절이 아니라 관객을 존중하는 태도로 들린다.' },
+        { en: "That's the one thing I'd defend.", ko: '그것만은 지키겠습니다.', note: '전부 닫지 않고 하나만 열어주는 답변 기술.' },
+        { en: 'Could you say more about…?', ko: '~에 대해 더 말씀해주시겠어요?', note: '관객이 자주 쓰는 표현. 듣기용으로 익혀둘 것.' },
+        { en: "What's next for you?", ko: '다음 작품은요?', note: '반드시 나온다. 짧고 구체적으로 답할 것.' },
+        { en: 'We have time for one more.', ko: '한 분만 더 받겠습니다.', note: '사회자의 마무리 신호. 답을 짧게 줄여야 할 때다.' }
+      ]
+    },
+    {
       id: 'film-sales',
       title: '배급·세일즈 미팅과 계약 용어',
       titleEn: 'Sales, distribution & deal terms',

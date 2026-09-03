@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-02",
-  "count": 112,
+  "generated": "2026-09-03",
+  "count": 133,
   "modes": [
     {
       "id": "daily",
@@ -843,6 +843,195 @@
       "en": "That's a wrap.",
       "ko": "촬영 종료합니다.",
       "note": "현장에서 가장 듣기 좋은 두 단어."
+    },
+    {
+      "id": "film/film-cast/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배우에게 제안하기",
+      "en": "What stayed with you?",
+      "ko": "어떤 게 기억에 남으셨나요?",
+      "note": "감상을 묻는 가장 좋은 질문. 상대가 진짜 읽었는지도 드러난다."
+    },
+    {
+      "id": "film/film-cast/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배우에게 제안하기",
+      "en": "That's the part I can't compromise on.",
+      "ko": "그 부분은 타협할 수 없습니다.",
+      "note": "감독의 원칙을 밝히는 문장. 협상에서도 그대로 쓴다."
+    },
+    {
+      "id": "film/film-cast/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배우에게 제안하기",
+      "en": "The structure is locked. The performance isn't.",
+      "ko": "구조는 확정, 연기는 열려 있습니다.",
+      "note": "통제와 여지를 동시에 보여주는 연출관."
+    },
+    {
+      "id": "film/film-cast/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배우에게 제안하기",
+      "en": "Your character is out by day eighteen.",
+      "ko": "그 배역은 18일차에 촬영이 끝납니다.",
+      "note": "배우가 실제로 궁금해하는 건 총 회차가 아니라 자기 일정이다."
+    },
+    {
+      "id": "film/film-cast/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배우에게 제안하기",
+      "en": "The offer is below my quote.",
+      "ko": "제안이 제 개런티보다 낮습니다.",
+      "note": "quote = 배우의 통상 출연료. 듣기용으로 반드시 알아둘 것."
+    },
+    {
+      "id": "film/film-cast/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배우에게 제안하기",
+      "en": "I can only offer you the role.",
+      "ko": "제가 드릴 수 있는 건 역할뿐입니다.",
+      "note": "저예산이 가진 유일한 무기를 정직하게 내미는 말."
+    },
+    {
+      "id": "film/film-cast/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "배우에게 제안하기",
+      "en": "Let me sit with it.",
+      "ko": "좀 더 생각해보겠습니다.",
+      "note": "거절도 수락도 아닌 상태. 재촉하면 잃는다."
+    },
+    {
+      "id": "film/film-post/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "후반작업 — 색보정과 사운드",
+      "en": "The skin tones are reading warm.",
+      "ko": "피부톤이 따뜻하게 보입니다.",
+      "note": "read = 화면에서 그렇게 보이다. 색보정실의 핵심 동사."
+    },
+    {
+      "id": "film/film-post/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "후반작업 — 색보정과 사운드",
+      "en": "Can we crush the blacks a touch?",
+      "ko": "블랙을 조금만 더 눌러줄까요?",
+      "note": "a touch = 아주 살짝. 미세 조정을 요청하는 표현."
+    },
+    {
+      "id": "film/film-post/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "후반작업 — 색보정과 사운드",
+      "en": "I'll take that trade.",
+      "ko": "그 손해는 감수하겠습니다.",
+      "note": "무엇을 잃는지 알고 선택한다는 프로의 화법."
+    },
+    {
+      "id": "film/film-post/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "후반작업 — 색보정과 사운드",
+      "en": "The dialogue is fighting the score.",
+      "ko": "대사와 음악이 부딪힙니다.",
+      "note": "두 소리가 서로를 잡아먹는 상태."
+    },
+    {
+      "id": "film/film-post/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "후반작업 — 색보정과 사운드",
+      "en": "Duck the score under the line.",
+      "ko": "대사 밑으로 음악을 낮춰주세요.",
+      "note": "duck = 다른 소리를 위해 볼륨을 눌러주다."
+    },
+    {
+      "id": "film/film-post/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "후반작업 — 색보정과 사운드",
+      "en": "The room tone changes at the cut.",
+      "ko": "편집점에서 룸톤이 튑니다.",
+      "note": "room tone은 공간의 기본 소음. 후반작업 필수 용어."
+    },
+    {
+      "id": "film/film-post/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "후반작업 — 색보정과 사운드",
+      "en": "Let's not let the audience hear the edit.",
+      "ko": "관객이 편집을 듣게 하지 맙시다.",
+      "note": "후반작업의 원칙을 한 문장으로 압축한 말."
+    },
+    {
+      "id": "film/film-gv/0",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제 관객과의 대화",
+      "en": "Where did this story come from?",
+      "ko": "이 이야기는 어디서 왔나요?",
+      "note": "GV의 첫 질문. 답을 문장으로 굳혀 외워둘 것."
+    },
+    {
+      "id": "film/film-gv/1",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제 관객과의 대화",
+      "en": "The limit turned out to be the point.",
+      "ko": "그 제약이 결국 주제가 됐습니다.",
+      "note": "저예산을 미학으로 바꿔 말하는 방법."
+    },
+    {
+      "id": "film/film-gv/2",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제 관객과의 대화",
+      "en": "I'd rather not explain it.",
+      "ko": "설명하지 않는 편이 낫겠습니다.",
+      "note": "거절이 아니라 관객을 존중하는 태도로 들린다."
+    },
+    {
+      "id": "film/film-gv/3",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제 관객과의 대화",
+      "en": "That's the one thing I'd defend.",
+      "ko": "그것만은 지키겠습니다.",
+      "note": "전부 닫지 않고 하나만 열어주는 답변 기술."
+    },
+    {
+      "id": "film/film-gv/4",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제 관객과의 대화",
+      "en": "Could you say more about…?",
+      "ko": "~에 대해 더 말씀해주시겠어요?",
+      "note": "관객이 자주 쓰는 표현. 듣기용으로 익혀둘 것."
+    },
+    {
+      "id": "film/film-gv/5",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제 관객과의 대화",
+      "en": "What's next for you?",
+      "ko": "다음 작품은요?",
+      "note": "반드시 나온다. 짧고 구체적으로 답할 것."
+    },
+    {
+      "id": "film/film-gv/6",
+      "mode": "film",
+      "modeTitle": "영화 비즈니스 회화",
+      "scene": "영화제 관객과의 대화",
+      "en": "We have time for one more.",
+      "ko": "한 분만 더 받겠습니다.",
+      "note": "사회자의 마무리 신호. 답을 짧게 줄여야 할 때다."
     },
     {
       "id": "film/film-sales/0",

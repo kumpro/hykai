@@ -262,7 +262,7 @@
       if (btn.dataset.on === '1') { stopFlag.v = true; Speech.stop(); btn.dataset.on = ''; btn.textContent = '▶ 전체 듣기'; return; }
       btn.dataset.on = '1'; btn.textContent = '■ 정지';
       stopFlag.v = false;
-      playSequence(scene.lines, 0, box, stopFlag, function () {
+      playSequence(scene.lines, 0, box, stopFlag, Speech.token(), function () {
         btn.dataset.on = ''; btn.textContent = '▶ 전체 듣기';
       });
       markStudied(scene.id);
@@ -314,8 +314,9 @@
     return box;
   }
 
-  function playSequence(lines, i, box, stopFlag, done) {
-    if (stopFlag.v || i >= lines.length) { done && done(); return; }
+  function playSequence(lines, i, box, stopFlag, tok, done) {
+    // 화면을 빠져나갔으면(tok이 낡았으면) 이어 읽지 않는다
+    if (stopFlag.v || !Speech.alive(tok) || i >= lines.length) { done && done(); return; }
     var row = box.querySelector('.line[data-i="' + i + '"]');
     if (row) {
       box.querySelectorAll('.line.active').forEach(function (n) { n.classList.remove('active'); });
@@ -323,7 +324,8 @@
       row.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     Speech.speak(UI.en(lines[i].en)).then(function () {
-      setTimeout(function () { playSequence(lines, i + 1, box, stopFlag, done); }, 420);
+      if (!Speech.alive(tok)) { done && done(); return; }
+      setTimeout(function () { playSequence(lines, i + 1, box, stopFlag, tok, done); }, 420);
     });
   }
 
@@ -476,7 +478,7 @@
     box.appendChild(stage);
 
     setup.querySelector('#startRp').onclick = function () {
-      session = { scene: scene.id, role: myRole, i: 0, scores: [] };
+      session = { scene: scene.id, role: myRole, i: 0, scores: [], tok: Speech.token() };
       stage.innerHTML = '';
       setup.classList.add('slim');
       runRoleplay(scene, myRole, stage);
@@ -490,6 +492,8 @@
   }
 
   function runRoleplay(scene, myRole, stage) {
+    // 화면을 빠져나갔으면 다음 대사도, 마이크도 다시 열지 않는다
+    if (!session || !Speech.alive(session.tok)) return;
     var i = session.i;
     if (i >= scene.lines.length) { finishRoleplay(scene, stage); return; }
     var line = scene.lines[i];
@@ -508,6 +512,7 @@
 
     if (!mine) {
       Speech.speak(text).then(function () {
+        if (!session || !Speech.alive(session.tok)) return;
         session.i = i + 1;
         setTimeout(function () { runRoleplay(scene, myRole, stage); }, 350);
       });
@@ -529,6 +534,7 @@
     };
     help.querySelector('[data-a=skip]').onclick = function () {
       Speech.stopListening();
+      session.tok = Speech.token();   // 의도한 중단이므로 세대를 다시 맞춘다
       session.i = i + 1;
       runRoleplay(scene, myRole, stage);
     };
@@ -542,6 +548,7 @@
     Speech.listen({
       oninterim: function (t) { res.innerHTML = '<span class="listening">' + esc(t) + '</span>'; },
       onfinal: function (said) {
+        if (!session || !Speech.alive(session.tok)) return;
         var r = Speech.score(text, said);
         session.scores.push(r.score);
         res.innerHTML = '';
@@ -575,7 +582,7 @@
       '</div>'
     );
     card.querySelectorAll('button')[0].onclick = function () {
-      session.i = 0; session.scores = [];
+      session.i = 0; session.scores = []; session.tok = Speech.token();
       stage.innerHTML = '';
       runRoleplay(scene, session.role, stage);
     };
@@ -676,6 +683,11 @@
           '<button class="btn" id="digest">오늘 몫 내보내기</button>' +
         '</div>' +
         '<div class="grade-row">' +
+          '<button class="btn" id="backup">기록 백업</button>' +
+          '<button class="btn" id="restore">백업에서 복원</button>' +
+        '</div>' +
+        '<p class="hint">기록은 이 브라우저 안에만 있다. 폰을 바꾸거나 사이트 데이터를 지우면 사라지니, 가끔 백업 파일을 받아 메일에 넣어두자.</p>' +
+        '<div class="grade-row">' +
           '<button class="btn bad" id="reset">기록 초기화</button>' +
           '<button class="btn primary" id="close">닫기</button>' +
         '</div>' +
@@ -708,6 +720,8 @@
     };
     m.querySelector('#slang').onclick = function () { back.remove(); openSlangImport(); };
     m.querySelector('#digest').onclick = function () { VIEWS.copyText(VIEWS.buildDigest()); };
+    m.querySelector('#backup').onclick = function () { VIEWS.backupState(); };
+    m.querySelector('#restore').onclick = function () { VIEWS.restoreState(); };
     m.querySelector('#close').onclick = function () { back.remove(); go({}); };
     m.querySelector('#reset').onclick = function () {
       if (confirm('학습 기록을 모두 지운다. 되돌릴 수 없다.')) {

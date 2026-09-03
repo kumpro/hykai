@@ -7,6 +7,15 @@
   var voices = [];
   var currentUtter = null;
 
+  /* 재생 세대(generation).
+   * 여러 줄을 이어 읽는 화면들은 다음 줄을 재생하기 전에 이 번호가 그대로인지 확인한다.
+   * stop()이 번호를 올리므로, 화면을 빠져나가면 이어지던 재생이 그 자리에서 끊긴다.
+   * synth.cancel()만으로는 부족하다 — 취소도 onend를 부르기 때문에
+   * 다음 줄을 재생하는 콜백이 그대로 이어져버린다. */
+  var generation = 0;
+  function token() { return generation; }
+  function alive(t) { return t === generation; }
+
   function loadVoices() {
     if (!synth) return;
     voices = synth.getVoices().filter(function (v) { return /^en(-|_)/i.test(v.lang); });
@@ -64,6 +73,7 @@
   }
 
   function stop() {
+    generation += 1;
     if (synth) synth.cancel();
     currentUtter = null;
   }
@@ -78,7 +88,7 @@
   function listen(handlers) {
     handlers = handlers || {};
     if (!SR) { if (handlers.onerror) handlers.onerror('unsupported'); return null; }
-    stopListening();
+    abortRecognizer();   // 세대는 올리지 않는다 — 이어지던 롤플레이가 끊기면 안 되기 때문
     var r = new SR();
     r.lang = window.DIALECT ? DIALECT.lang(Store.state.settings.dialect) : 'en-US';
     r.interimResults = true;
@@ -102,11 +112,17 @@
     return r;
   }
 
-  function stopListening() {
+  function abortRecognizer() {
     if (recognizer) {
       try { recognizer.stop(); } catch (e) { /* 이미 멈춘 상태 */ }
       recognizer = null;
     }
+  }
+
+  /* 바깥에서 부르는 중단 — 이어지던 흐름까지 끊는다 */
+  function stopListening() {
+    generation += 1;
+    abortRecognizer();
   }
 
   /* ---------- 발음/문장 채점 ----------
@@ -198,6 +214,7 @@
   window.Speech = {
     speak: speak, stop: stop, listVoices: listVoices, pickVoice: pickVoice,
     canListen: canListen, listen: listen, stopListening: stopListening,
-    score: markup, supported: !!synth
+    score: markup, supported: !!synth,
+    token: token, alive: alive
   };
 })();
