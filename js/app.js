@@ -11,14 +11,16 @@
   /* 모드와 화면마다 다른 시대를 입힌다 */
   var THEME_BY_MODE = {
     daily: 'modern', travel: 'deco', film: 'future',
-    hooks: 'ancient', slang: 'future', mine: 'future'
+    hooks: 'ancient', slang: 'future', mine: 'future', myphr: 'deco'
   };
   var THEME_BY_VIEW = {
     home: 'modern', review: 'modern', schedule: 'modern',
     exam: 'medieval', 'exam-run': 'medieval',
     grammar: 'ancient', drill: 'ancient',
     studio: 'future',
-    phrasebook: 'deco'    // 증기선과 여행 포스터의 시대 — 세계 여행 표현집에 어울린다
+    phrasebook: 'deco',   // 증기선과 여행 포스터의 시대 — 세계 여행 표현집에 어울린다
+    worldmap: 'medieval', // 양피지 해도(海圖)
+    translate: 'future'
   };
 
   function applyTheme() {
@@ -53,7 +55,7 @@
       '</div>'
     );
     b.children[0].onclick = onBack;
-    b.children[2].onclick = openSettings;
+    b.children[2].onclick = function () { openSettings(); };
     return b;
   }
 
@@ -104,7 +106,9 @@
       { t: '듣기 시험', d: '토익 유형', i: '🎧', go: { name: 'exam' } },
       { t: '문법 집중', d: '여섯 지점 드릴', i: '🧠', go: { name: 'grammar' } },
       { t: '피칭 스튜디오', d: '내 작품으로', i: '🎞️', go: { name: 'studio' } },
-      { t: '7개 국어 표현집', d: MULTILANG.count() + '문장 · 일본어 중국어 프랑스어 독일어 스페인어 러시아어 아랍어', i: '🌐', go: { name: 'phrasebook' }, wide: true }
+      { t: '세계 지도', d: '언어별 색 · 나라를 누르면 그 나라 말로 · ' + MULTILANG.langCount() + '개 언어', i: '🗺️', go: { name: 'worldmap' }, wide: true },
+      { t: '세계 표현집', d: MULTILANG.count() + '문장' + (MULTILANG.myPhrases().length ? ' + 내 문장 ' + MULTILANG.myPhrases().length : ''), i: '🌐', go: { name: 'phrasebook' } },
+      { t: '우리말 번역', d: '한 문장을 여러 언어로', i: '🇰🇷', go: { name: 'translate' } }
     ].forEach(function (x) {
       var b = el('<button class="card tool' + (x.wide ? ' wide' : '') + '"><span class="tool-i">' + x.i + '</span>' +
         '<span class="tool-t">' + esc(x.t) + '</span><span class="tool-d">' + esc(x.d) + '</span></button>');
@@ -311,7 +315,7 @@
       var sayBtn = row.querySelector('[data-a=say]');
       if (sayBtn) sayBtn.onclick = function () { shadow(text, row, sayBtn); };
 
-      // 대사 속에 표현집 문장이 들어 있으면 7개 국어 칸을 붙인다 (기본은 접힌 상태)
+      // 대사 속에 표현집 문장이 들어 있으면 다국어 칸을 붙인다 (기본은 접힌 상태)
       var ml = MULTILANG.block(line.en, { loose: true });
       if (ml) row.insertBefore(ml, row.querySelector('.result'));
       box.appendChild(row);
@@ -408,7 +412,7 @@
       var c = el(
         '<div class="card flashcard">' +
           '<div class="fc-meta">' + (it.icon || '') + ' ' + esc(it.scene || '') +
-            (hasMl ? ' <span class="ml-badge" title="7개 국어 표현이 있다">🌐</span>' : '') +
+            (hasMl ? ' <span class="ml-badge" title="다른 나라 말 표현이 있다">🌐</span>' : '') +
             '<span class="fc-count">' + (idx + 1) + ' / ' + items.length + '</span></div>' +
           '<p class="fc-en">' + esc(text) + '</p>' +
           '<div class="fc-back' + (revealed ? '' : ' hidden') + '">' +
@@ -661,8 +665,9 @@
     return (!v || v.indexOf('BUILD') >= 0) ? '개발용' : v;
   }
 
-  function openSettings() {
+  function openSettings(section) {
     var s = Store.state.settings;
+    var ai = AI.cfg();
     var voices = Speech.listVoices();
     var opts = ['<option value="">자동 선택</option>'].concat(voices.map(function (v) {
       return '<option value="' + esc(v.name) + '"' + (s.voice === v.name ? ' selected' : '') + '>' + esc(v.name) + ' (' + v.lang + ')</option>';
@@ -697,9 +702,27 @@
             '<option value="dense"' + (s.pace === 'dense' ? ' selected' : '') + '>촘촘 — 1·2·4·10·24일</option>' +
           '</select></label>' +
         '<div class="field">' +
-          '<label class="auto-check"><input id="mlon" type="checkbox"' + (MULTILANG.settings().on ? ' checked' : '') + '> 카드와 대사에 7개 국어 함께 보기</label>' +
+          '<label class="auto-check"><input id="mlon" type="checkbox"' + (MULTILANG.settings().on ? ' checked' : '') + '> 카드와 대사에 다른 나라 말 함께 보기</label>' +
           '<div class="ml-langpick" id="mlpick"></div>' +
           '<p class="hint">뜻을 본 뒤에만 펼쳐진다. 고른 언어만 보인다.</p>' +
+        '</div>' +
+        '<div class="field ai-sec" id="ai-sec">' +
+          '<b>우리말 번역 · AI</b>' +
+          '<p class="hint">Claude API 키를 넣으면 우리말 한 문장을 여러 언어로 한 번에 옮기고, 한글 발음과 메모까지 붙인다. ' +
+            '키는 이 기기 브라우저에만 저장되고 기록 백업 파일에도 들어가지 않는다. 요청은 api.anthropic.com으로만 간다.</p>' +
+          '<label class="field">API 키 <span class="ai-state">' + (ai.key ? '저장됨 ✓ (…' + esc(ai.key.slice(-4)) + ')' : '없음') + '</span>' +
+            '<input id="aikey" type="password" autocomplete="off" spellcheck="false" placeholder="' + (ai.key ? '바꾸려면 새 키를 붙여넣기' : 'sk-ant-로 시작하는 키') + '"></label>' +
+          '<label class="field">모델<select id="aimodel">' + AI.MODELS.map(function (x) {
+            return '<option value="' + esc(x.id) + '"' + (ai.model === x.id ? ' selected' : '') + '>' + esc(x.name) + '</option>';
+          }).join('') + '</select></label>' +
+          '<label class="field">말하는 사람 (성별에 따라 말이 바뀌는 언어용)<select id="aispk">' +
+            '<option value="male"' + (ai.speaker !== 'female' ? ' selected' : '') + '>남성</option>' +
+            '<option value="female"' + (ai.speaker === 'female' ? ' selected' : '') + '>여성</option>' +
+          '</select></label>' +
+          '<div class="grade-row">' +
+            '<button class="btn primary" id="aisave">키 저장</button>' +
+            '<button class="btn bad" id="aiclear"' + (ai.key ? '' : ' disabled') + '>키 지우기</button>' +
+          '</div>' +
         '</div>' +
         '<div class="grade-row">' +
           '<button class="btn" id="slang">신조어 팩 갱신</button>' +
@@ -743,7 +766,7 @@
       toast(e.target.value === 'dense' ? '초반 간격을 좁혔다. 다음 채점부터 적용된다.' : '표준 간격으로 되돌렸다.');
     };
 
-    // 7개 국어 — 켜고 끄기, 보여줄 언어 고르기
+    // 다국어 — 켜고 끄기, 보여줄 언어 고르기
     var ml = s.multi || (s.multi = {});
     m.querySelector('#mlon').onchange = function (e) { ml.on = e.target.checked; Store.save(); };
     var pick = m.querySelector('#mlpick');
@@ -766,6 +789,32 @@
       };
       pick.appendChild(chip);
     });
+    // AI 번역 설정 — 키는 학습 기록과 다른 칸에 둔다
+    m.querySelector('#aimodel').onchange = function (e) { AI.set({ model: e.target.value }); };
+    m.querySelector('#aispk').onchange = function (e) { AI.set({ speaker: e.target.value }); };
+    m.querySelector('#aisave').onclick = function () {
+      var k = m.querySelector('#aikey').value.trim();
+      if (!k) { toast('키를 붙여넣자.'); return; }
+      if (!/^sk-ant-/.test(k) && !confirm('보통 sk-ant-로 시작한다. 그래도 저장할까?')) return;
+      if (!AI.set({ key: k })) { toast('이 브라우저에 저장하지 못했다. 시크릿 창이면 일반 창에서 열자.'); return; }
+      m.querySelector('#aikey').value = '';
+      m.querySelector('.ai-state').textContent = '저장됨 ✓ (…' + k.slice(-4) + ')';
+      m.querySelector('#aiclear').disabled = false;
+      toast('키를 저장했다. 우리말 번역에서 바로 쓸 수 있다.');
+    };
+    m.querySelector('#aiclear').onclick = function () {
+      if (!confirm('이 기기에서 API 키를 지운다.')) return;
+      AI.clearKey();
+      m.querySelector('.ai-state').textContent = '없음';
+      m.querySelector('#aiclear').disabled = true;
+      toast('키를 지웠다.');
+    };
+    if (section === 'ai') {
+      var sec = m.querySelector('#ai-sec');
+      sec.classList.add('flash');
+      setTimeout(function () { sec.scrollIntoView({ block: 'start', behavior: 'smooth' }); m.querySelector('#aikey').focus({ preventScroll: true }); }, 30);
+    }
+
     m.querySelector('#slang').onclick = function () { back.remove(); openSlangImport(); };
     m.querySelector('#digest').onclick = function () { VIEWS.copyText(VIEWS.buildDigest()); };
     m.querySelector('#backup').onclick = function () { VIEWS.backupState(); };
@@ -860,6 +909,8 @@
       case 'drill': node = VIEWS.drillRun(); break;
       case 'studio': node = VIEWS.studio(); break;
       case 'phrasebook': node = MULTILANG.phrasebook(); break;
+      case 'worldmap': node = WORLDMAP.view(); break;
+      case 'translate': node = TRANSLATE.view(); break;
       default: node = renderHome();
     }
     app.appendChild(node);
@@ -870,9 +921,42 @@
     ['hooks', 'slang', 'mine'].forEach(function (k) { delete window.PACKS[k]; });
     window.buildDerivedPacks();
     GENERATOR.rebuildPack();
+    buildMyPhrasePack();
   }
 
-  window.App = { go: go, topbar: topbar, cardDeck: cardDeck, startDeck: startDeck, scoreCard: scoreCard };
+  /* 우리말 번역에서 저장한 "내 문장"을 회화 모드 하나로 감싼다.
+   * 문장마다 장면 하나 — 지워도 다른 문장의 복습 기록이 밀리지 않게 하기 위해서다. */
+  function buildMyPhrasePack() {
+    delete window.PACKS.myphr;
+    var list = MULTILANG.myPhrases().filter(function (p) { return p.en; });
+    if (!list.length) return;
+    window.PACKS.myphr = {
+      id: 'myphr',
+      title: '내 문장',
+      titleEn: 'My Phrases',
+      icon: '🗂️',
+      theme: 'deco',
+      blurb: '우리말 번역에서 저장한 문장. 영어로 익히고, 펼치면 다른 나라 말도 함께 보인다.',
+      scenes: list.map(function (p) {
+        var langs = Object.keys(p.t || {}).length;
+        return {
+          id: 'myphr-' + p.id,
+          title: p.ko,
+          titleEn: p.en,
+          situation: (p.at || '') + ' 저장 · 영어 + ' + langs + '개 언어',
+          lines: [{ s: 'You', en: p.en, ko: p.ko }],
+          expressions: [{ en: p.en, ko: p.ko, note: '' }]
+        };
+      })
+    };
+  }
+
+  function refreshPacks() { boot(); }
+
+  window.App = {
+    go: go, topbar: topbar, cardDeck: cardDeck, startDeck: startDeck, scoreCard: scoreCard,
+    refreshPacks: refreshPacks, openSettings: openSettings
+  };
 
   Store.load();
   boot();

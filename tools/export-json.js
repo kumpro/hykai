@@ -6,7 +6,7 @@
  *   node tools/export-json.js
  *   → data/expressions.json  (모든 표현)
  *   → data/slang.json        (신조어 팩 — 앱의 자동 갱신 주소로 쓸 수 있다)
- *   → data/multi.json        (7개 국어 표현집)
+ *   → data/multi.json        (세계 표현집 — 22개 언어)
  */
 'use strict';
 
@@ -23,7 +23,7 @@ const sandbox = { window: {} };
 sandbox.window.window = sandbox.window;
 vm.createContext(sandbox);
 
-['daily.js', 'travel.js', 'film.js', 'focus.js', 'slang.js', 'multi.js'].forEach((f) => {
+['daily.js', 'travel.js', 'film.js', 'focus.js', 'slang.js', 'multi.js', 'multi-world.js'].forEach((f) => {
   const code = fs.readFileSync(path.join(dataDir, f), 'utf8');
   vm.runInContext(code, sandbox, { filename: f });
 });

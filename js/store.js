@@ -23,8 +23,10 @@
         on: true,         // 카드·대사에 다국어 접이식 칸을 붙일지
         langs: ['ja', 'zh', 'fr', 'de', 'es', 'ru', 'ar'],  // 보여줄 언어
         focus: ''         // 표현집에서 한 언어만 크게 볼 때 그 언어
-      }
+      },
+      translate: null     // 우리말 번역에서 옮길 언어 (translate.js가 처음 쓸 때 채운다)
     },
+    myPhrases: [],            // 우리말 번역에서 저장한 내 문장
     custom: { scenes: [] },   // 로그라인으로 생성한 장면
     exams: [],                // 시험 응시 기록
     slang: null,              // 사용자가 갱신한 신조어 팩 (없으면 내장 팩)
@@ -36,9 +38,10 @@
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   }
 
+  /* 기본값의 배열·객체를 그대로 물려주면, 초기화한 뒤에도 기본값 자체가 오염된 채로 남는다.
+   * 그래서 기본값은 늘 복사본에서 시작한다. */
   function deepMerge(base, patch) {
-    var out = {};
-    Object.keys(base).forEach(function (k) { out[k] = base[k]; });
+    var out = JSON.parse(JSON.stringify(base));
     Object.keys(patch || {}).forEach(function (k) {
       var bv = base[k], pv = patch[k];
       if (bv && pv && typeof bv === 'object' && typeof pv === 'object' && !Array.isArray(bv)) {
