@@ -372,6 +372,56 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .field textarea { resize: vertical; min-height: 90px; font-size: .82rem; }
 .field input[type=text]:focus, .field textarea:focus { outline: none; border-color: var(--accent); }
+.auto-check { display: flex; align-items: center; gap: 8px; font-size: .86rem; color: var(--ink-2); cursor: pointer; }
+.auto-check input { accent-color: var(--accent); width: 16px; height: 16px; }
+
+/* ---------- 7개 국어 ---------- */
+
+.tool.wide { grid-column: 1 / -1; }
+
+.ml-badge { font-size: .8rem; margin-left: 4px; opacity: .8; }
+
+.ml-fold { margin-top: 12px; text-align: left; }
+.ml-fold summary {
+  cursor: pointer; list-style: none; font-size: .8rem; color: var(--ink-3);
+  padding: 7px 10px; border: 1px dashed var(--line); border-radius: 8px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.ml-fold summary::-webkit-details-marker { display: none; }
+.ml-fold summary::before { content: '▸'; color: var(--accent); }
+.ml-fold[open] summary::before { content: '▾'; }
+.ml-fold summary b { color: var(--ink-2); font-weight: 600; }
+.ml-flags { letter-spacing: 2px; margin-left: auto; }
+.ml-list { display: grid; gap: 6px; margin-top: 8px; }
+
+.ml-row {
+  display: grid; grid-template-columns: 56px 1fr auto; gap: 10px; align-items: start;
+  padding: 9px 10px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px;
+}
+.ml-lang { display: grid; gap: 1px; justify-items: start; padding-top: 2px; }
+.ml-flag { font-size: 1.05rem; line-height: 1; }
+.ml-name { font-size: .66rem; color: var(--ink-3); line-height: 1.3; }
+.ml-body { min-width: 0; }
+.ml-native { margin: 0; font-size: 1rem; line-height: 1.45; color: var(--ink); word-break: keep-all; overflow-wrap: anywhere; }
+.ml-native[dir=rtl] { text-align: right; font-size: 1.08rem; }
+.ml-kr { margin: 4px 0 0; font-size: .84rem; color: var(--ink-2); line-height: 1.5; word-break: keep-all; }
+.ml-read { margin: 1px 0 0; font-size: .72rem; color: var(--ink-3); line-height: 1.5; font-style: italic; }
+.ml-note { margin: 5px 0 0; font-size: .74rem; color: var(--accent); line-height: 1.5; }
+.ml-play { align-self: center; padding: 6px 9px; }
+
+.ml-row.big { margin-top: 12px; padding: 12px; }
+.ml-row.big .ml-native { font-size: 1.22rem; }
+.ml-row.big .ml-kr { font-size: .95rem; }
+.ml-row.big .ml-read { font-size: .78rem; }
+
+.ml-focus { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.ml-section .hint { margin: -4px 0 10px; }
+.ml-count { color: var(--accent); margin-left: 4px; }
+.ml-card { padding: 14px 16px; margin-bottom: 10px; }
+.ml-head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+.ml-en { margin: 0; font-size: 1.02rem; font-weight: 600; }
+.ml-ko { margin: 2px 0 0; font-size: .84rem; color: var(--ink-2); }
+.ml-langpick { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
 
 @media (max-width: 420px) {
   .hero-title { font-size: 1.5rem; }

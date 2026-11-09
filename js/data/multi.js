@@ -1,0 +1,577 @@
+/* 7개 국어 표현집.
+ *
+ * 영어 학습이 중심이고, 이건 곁가지다. 그래서 모든 문장이 아니라 골라서 넣었다.
+ *   넣은 것 — 여행·일상에서 그대로 쓰이는 문장, 나라마다 대응 표현이 분명한 것,
+ *             그리고 영어 콘텐츠에는 없지만 어디서든 꼭 필요한 생존 표현
+ *   뺀 것   — 영어 말장난에 기대는 관용구(Tell me about it, Can't complain),
+ *             해외에서도 영어 그대로 쓰는 업계 용어(MG, back end, attached)
+ *
+ * en이 영어 콘텐츠의 표현과 글자까지 같으면, 그 카드와 대사에 자동으로 붙는다.
+ *
+ * 각 언어는 [원문, 로마자 표기, 한글 발음] 순서다.
+ *   로마자는 글자를 못 읽는 언어(일·중·러·아랍)에만 넣었다.
+ *   한글 발음은 근사치다. 억양과 성조는 🔊 소리로 확인하는 게 정확하다.
+ *
+ * 아랍어는 이집트 구어(Masri)다. 카이로에서 실제로 들리는 말이고,
+ * 뉴스·문서에 쓰는 표준 아랍어(Fusha)와는 단어와 발음이 꽤 다르다.
+ * 이집트 구어에서는 ج를 'g'로 읽는다(표준어는 'j').
+ */
+window.MULTI = {
+  langs: [
+    { id: 'ja', name: '일본어', flag: '🇯🇵', tts: 'ja-JP' },
+    { id: 'zh', name: '중국어', flag: '🇨🇳', tts: 'zh-CN' },
+    { id: 'fr', name: '프랑스어', flag: '🇫🇷', tts: 'fr-FR' },
+    { id: 'de', name: '독일어', flag: '🇩🇪', tts: 'de-DE' },
+    { id: 'es', name: '스페인어', flag: '🇪🇸', tts: 'es-ES' },
+    { id: 'ru', name: '러시아어', flag: '🇷🇺', tts: 'ru-RU' },
+    { id: 'ar', name: '아랍어 (이집트)', flag: '🇪🇬', tts: 'ar-EG', rtl: true }
+  ],
+
+  cats: [
+    { id: 'survival', title: '생존 표현', blurb: '어느 나라에 떨어져도 이것만은 입에서 나와야 한다.' },
+    { id: 'daily', title: '일상', blurb: '안부, 약속, 고마움. 사람 사이를 부드럽게 하는 말.' },
+    { id: 'travel', title: '여행', blurb: '공항, 호텔, 식당, 길, 상점. 막히는 지점마다 한 문장씩.' },
+    { id: 'film', title: '현장·업무', blurb: '해외 스태프와 일할 때, 마켓에서 처음 인사할 때.' }
+  ],
+
+  items: [
+    /* ------------------------------------------------ 생존 표현 */
+    {
+      en: 'Thank you very much.', ko: '정말 감사합니다.', cat: 'survival',
+      ja: ['どうもありがとうございます。', 'Dōmo arigatō gozaimasu', '도-모 아리가또- 고자이마스'],
+      zh: ['非常感谢。', 'Fēicháng gǎnxiè', '페이창 간셰'],
+      fr: ['Merci beaucoup.', '', '메르시 보꾸'],
+      de: ['Vielen Dank.', '', '필렌 당크'],
+      es: ['Muchas gracias.', '', '무차스 그라시아스'],
+      ru: ['Большое спасибо.', "Bol'shoye spasibo", '발쇼예 스파시바'],
+      ar: ['شكراً جزيلاً', 'shokran gazīlan', '쇼크란 가질란'],
+      note: { ar: '이집트식으로는 متشكر أوي(모타샤케르 아위)도 아주 많이 쓴다.' }
+    },
+    {
+      en: 'Excuse me.', ko: '실례합니다. (사람을 부를 때)', cat: 'survival',
+      ja: ['すみません。', 'Sumimasen', '스미마셍'],
+      zh: ['不好意思。', 'Bù hǎoyìsi', '뿌 하오이쓰'],
+      fr: ['Excusez-moi.', '', '엑스뀌제 무아'],
+      de: ['Entschuldigung.', '', '엔트슐디궁'],
+      es: ['Disculpe.', '', '디스꿀뻬'],
+      ru: ['Извините.', 'Izvinite', '이즈비니쩨'],
+      ar: ['لو سمحت', 'law samaḥt', '라우 사마흐트'],
+      note: {
+        ja: 'すみません은 "실례합니다·죄송합니다·고맙습니다"를 다 겸한다. 일본에서 가장 많이 쓰는 한마디.',
+        ar: '여성에게 말할 때는 law samaḥti(라우 사마흐티).'
+      }
+    },
+    {
+      en: "I'm sorry.", ko: '죄송합니다.', cat: 'survival',
+      ja: ['ごめんなさい。', 'Gomen nasai', '고멘나사이'],
+      zh: ['对不起。', 'Duìbuqǐ', '뚜이부치'],
+      fr: ['Je suis désolé.', '', '쥬 쉬 데졸레'],
+      de: ['Es tut mir leid.', '', '에스 투트 미어 라이트'],
+      es: ['Lo siento.', '', '로 시엔또'],
+      ru: ['Простите.', 'Prostite', '쁘라스찌쩨'],
+      ar: ['آسف', 'āsef', '아세프'],
+      note: {
+        ja: '격식을 갖출 자리에서는 申し訳ありません(모-시와께 아리마셍).',
+        fr: '여성 화자는 désolée로 쓴다. 발음은 같다.',
+        ar: '여성 화자는 āsfa(아스파).'
+      }
+    },
+    {
+      en: 'How much is this?', ko: '이거 얼마예요?', cat: 'survival',
+      ja: ['これはいくらですか？', 'Kore wa ikura desu ka?', '코레와 이꾸라 데스까'],
+      zh: ['这个多少钱？', 'Zhège duōshao qián?', '쩌거 뚜오샤오 치엔'],
+      fr: ["C'est combien ?", '', '쎄 꽁비앵'],
+      de: ['Wie viel kostet das?', '', '비 필 코스테트 다스'],
+      es: ['¿Cuánto cuesta esto?', '', '꾸안또 꾸에스따 에스또'],
+      ru: ['Сколько это стоит?', "Skol'ko eto stoit?", '스꼴까 에따 스또잇'],
+      ar: ['ده بكام؟', 'da b-kām?', '다 비깜'],
+      note: { ar: '이집트 시장에서 가장 많이 쓰는 두 단어. 첫 가격은 흥정의 시작이다.' }
+    },
+    {
+      en: 'Where is the restroom?', ko: '화장실이 어디예요?', cat: 'survival',
+      ja: ['トイレはどこですか？', 'Toire wa doko desu ka?', '토이레와 도꼬 데스까'],
+      zh: ['洗手间在哪里？', 'Xǐshǒujiān zài nǎlǐ?', '시쇼우지엔 짜이 나리'],
+      fr: ['Où sont les toilettes ?', '', '우 쏭 레 뚜알렛'],
+      de: ['Wo ist die Toilette?', '', '보 이스트 디 토알레테'],
+      es: ['¿Dónde está el baño?', '', '돈데 에스따 엘 바뇨'],
+      ru: ['Где туалет?', 'Gde tualet?', '그졔 뚜알롓'],
+      ar: ['الحمام فين؟', 'el-ḥammām fēn?', '엘함맘 페인']
+    },
+    {
+      en: "I don't understand.", ko: '이해가 안 돼요.', cat: 'survival',
+      ja: ['わかりません。', 'Wakarimasen', '와까리마셍'],
+      zh: ['我听不懂。', 'Wǒ tīng bu dǒng', '워 팅 부 동'],
+      fr: ['Je ne comprends pas.', '', '쥬 느 꽁프랑 빠'],
+      de: ['Ich verstehe nicht.', '', '이히 페어슈테에 니히트'],
+      es: ['No entiendo.', '', '노 엔띠엔도'],
+      ru: ['Я не понимаю.', 'Ya ne ponimayu', '야 니 빠니마유'],
+      ar: ['مش فاهم', 'mesh fāhem', '메쉬 파헴'],
+      note: {
+        zh: '말이 안 들릴 때다. 글을 못 읽겠으면 看不懂(칸부동).',
+        ar: '여성 화자는 mesh fahma(메쉬 파흐마).'
+      }
+    },
+    {
+      en: 'Could you speak more slowly?', ko: '좀 천천히 말씀해 주시겠어요?', cat: 'survival',
+      ja: ['もう少しゆっくり話していただけますか？', 'Mō sukoshi yukkuri hanashite itadakemasu ka?', '모- 스꼬시 육꾸리 하나시떼 이따다께마스까'],
+      zh: ['请说慢一点。', 'Qǐng shuō màn yìdiǎn', '칭 슈오 만 이디엔'],
+      fr: ['Vous pouvez parler plus lentement ?', '', '부 뿌베 빠를레 쁠뤼 랑뜨망'],
+      de: ['Können Sie bitte langsamer sprechen?', '', '쾬넨 지 비테 랑자머 슈프레헨'],
+      es: ['¿Puede hablar más despacio?', '', '뿌에데 아블라르 마스 데스빠시오'],
+      ru: ['Говорите, пожалуйста, помедленнее.', 'Govorite, pozhaluysta, pomedlenneye', '가바리쩨 빠좔스따 빠몌들롄녜예'],
+      ar: ['ممكن تتكلم بالراحة؟', 'momken tetkallem bel-rāḥa?', '몸켄 테트칼렘 벨라하']
+    },
+    {
+      en: 'Do you speak English?', ko: '영어 하세요?', cat: 'survival',
+      ja: ['英語を話せますか？', 'Eigo o hanasemasu ka?', '에-고오 하나세마스까'],
+      zh: ['你会说英语吗？', 'Nǐ huì shuō Yīngyǔ ma?', '니 후이 슈오 잉위 마'],
+      fr: ['Vous parlez anglais ?', '', '부 빠를레 앙글레'],
+      de: ['Sprechen Sie Englisch?', '', '슈프레헨 지 엥글리쉬'],
+      es: ['¿Habla inglés?', '', '아블라 잉글레스'],
+      ru: ['Вы говорите по-английски?', 'Vy govorite po-angliyski?', '브이 가바리쩨 빠앙글리스끼'],
+      ar: ['بتتكلم إنجليزي؟', 'betetkallem engelīzi?', '베테트칼렘 엔겔리지'],
+      note: { fr: '프랑스에서는 먼저 Bonjour(봉쥬르)로 인사한 뒤에 묻는 게 예의다. 인사 없이 바로 물으면 차갑게 받아들인다.' }
+    },
+    {
+      en: 'Nice to meet you.', ko: '만나서 반갑습니다.', cat: 'survival',
+      ja: ['はじめまして。', 'Hajimemashite', '하지메마시떼'],
+      zh: ['很高兴认识你。', 'Hěn gāoxìng rènshi nǐ', '헌 까오싱 런스 니'],
+      fr: ['Enchanté.', '', '앙샹떼'],
+      de: ['Freut mich.', '', '프로이트 미히'],
+      es: ['Mucho gusto.', '', '무초 구스또'],
+      ru: ['Очень приятно.', "Ochen' priyatno", '오친 쁘리야뜨나'],
+      ar: ['فرصة سعيدة', 'forṣa saʿīda', '포르사 사이다'],
+      note: {
+        fr: '여성 화자는 Enchantée. 발음은 같다.',
+        ar: '직역하면 "즐거운 기회". 이집트에서 처음 만났을 때의 표준 인사.'
+      }
+    },
+    {
+      en: 'Cheers!', ko: '건배!', cat: 'survival',
+      ja: ['乾杯！', 'Kanpai!', '깜빠이'],
+      zh: ['干杯！', 'Gānbēi!', '깐뻬이'],
+      fr: ['Santé !', '', '상떼'],
+      de: ['Prost!', '', '프로스트'],
+      es: ['¡Salud!', '', '살룻'],
+      ru: ['За нас!', 'Za nas!', '자 나스'],
+      ar: ['في صحتك!', 'fi ṣeḥḥetak!', '피 세헤탁'],
+      note: {
+        zh: '干杯는 말 그대로 "잔을 비우자"다. 천천히 마시고 싶으면 随意(수이이, 편하게).',
+        de: '독일에서는 잔을 부딪칠 때 상대 눈을 봐야 한다. 시선을 피하면 실례다.',
+        ru: '"우리를 위해". 러시아는 건배 때마다 짧은 건배사를 붙이는 문화다.',
+        ar: '"당신 건강을 위해". 이집트에서는 차나 음료를 들며 하는 일상 인사다.'
+      }
+    },
+    {
+      en: 'Delicious!', ko: '맛있어요!', cat: 'survival',
+      ja: ['おいしい！', 'Oishii!', '오이시-'],
+      zh: ['好吃！', 'Hǎochī!', '하오츠'],
+      fr: ["C'est délicieux !", '', '쎄 델리시외'],
+      de: ['Sehr lecker!', '', '제어 레커'],
+      es: ['¡Qué rico!', '', '께 리꼬'],
+      ru: ['Очень вкусно!', "Ochen' vkusno!", '오친 프꾸스나'],
+      ar: ['الأكل حلو أوي!', 'el-akl ḥelw awi!', '엘아클 헬루 아위'],
+      note: { es: '스페인에서는 ¡Está buenísimo!(에스따 부에니시모)도 흔하다.' }
+    },
+    {
+      en: 'Help!', ko: '도와주세요!', cat: 'survival',
+      ja: ['助けて！', 'Tasukete!', '타스께떼'],
+      zh: ['救命！', 'Jiùmìng!', '지우밍'],
+      fr: ['Au secours !', '', '오 스꾸르'],
+      de: ['Hilfe!', '', '힐페'],
+      es: ['¡Socorro!', '', '소꼬로'],
+      ru: ['Помогите!', 'Pomogite!', '빠마기쩨'],
+      ar: ['الحقوني!', 'elḥaʾūni!', '엘하우니'],
+      note: { es: '¡Ayuda!(아유다)도 통한다.' }
+    },
+
+    /* ------------------------------------------------ 일상 */
+    {
+      en: "How's it going?", ko: '잘 지내?', cat: 'daily',
+      ja: ['調子どう？', 'Chōshi dō?', '쵸-시 도-'],
+      zh: ['最近怎么样？', 'Zuìjìn zěnmeyàng?', '쭈이진 쩐머양'],
+      fr: ['Ça va ?', '', '싸 바'],
+      de: ["Wie geht's?", '', '비 게츠'],
+      es: ['¿Qué tal?', '', '께 딸'],
+      ru: ['Как дела?', 'Kak dela?', '깍 질라'],
+      ar: ['إزيك؟', 'ezzayak?', '이자약'],
+      note: {
+        ja: '친한 사이의 말투다. 정중하게는 お元気ですか？(오겡끼 데스까).',
+        ar: '여성에게는 ezzayek(이자옉).'
+      }
+    },
+    {
+      en: 'No rush.', ko: '천천히 하세요.', cat: 'daily',
+      ja: ['ゆっくりでいいですよ。', 'Yukkuri de ii desu yo', '육꾸리데 이-데스요'],
+      zh: ['不着急。', 'Bù zháojí', '뿌 자오지'],
+      fr: ['Prenez votre temps.', '', '프르네 보트르 땅'],
+      de: ['Keine Eile.', '', '카이네 아일레'],
+      es: ['Sin prisa.', '', '신 쁘리사'],
+      ru: ['Не торопитесь.', "Ne toropites'", '니 따로삐쩨시'],
+      ar: ['على مهلك', 'ʿala mahlak', '알라 마흘락'],
+      note: { ar: '여성에게는 ʿala mahlek(알라 마흘렉).' }
+    },
+    {
+      en: 'Have a good one!', ko: '좋은 하루 보내세요!', cat: 'daily',
+      ja: ['よい一日を！', 'Yoi ichinichi o!', '요이 이찌니찌오'],
+      zh: ['祝你今天愉快！', 'Zhù nǐ jīntiān yúkuài!', '쭈 니 진티엔 위콰이'],
+      fr: ['Bonne journée !', '', '본 쥬르네'],
+      de: ['Schönen Tag noch!', '', '쇠넨 탁 노흐'],
+      es: ['¡Que tengas un buen día!', '', '께 뗑가스 운 부엔 디아'],
+      ru: ['Хорошего дня!', 'Khoroshego dnya!', '하로셰바 드냐'],
+      ar: ['يومك سعيد', 'yōmak saʿīd', '요막 사이드'],
+      note: { fr: '저녁이면 Bonne soirée !(본 스와레).' }
+    },
+    {
+      en: "It's been forever.", ko: '진짜 오랜만이다.', cat: 'daily',
+      ja: ['久しぶり！', 'Hisashiburi!', '히사시부리'],
+      zh: ['好久不见！', 'Hǎojiǔ bújiàn!', '하오지우 부지엔'],
+      fr: ['Ça fait une éternité !', '', '싸 페 윈 에떼르니떼'],
+      de: ['Lange nicht gesehen!', '', '랑에 니히트 게제엔'],
+      es: ['¡Cuánto tiempo!', '', '꾸안또 띠엠뽀'],
+      ru: ['Сто лет не виделись!', "Sto let ne videlis'!", '스또 롓 니 비졜리시'],
+      ar: ['من زمان!', 'men zamān!', '멘 자만'],
+      note: { ru: '직역하면 "백 년 동안 못 봤다". 영어의 forever와 같은 과장이다.' }
+    },
+    {
+      en: 'What have you been up to?', ko: '요즘 뭐 하고 지냈어?', cat: 'daily',
+      ja: ['最近どうしてた？', 'Saikin dō shiteta?', '사이낀 도- 시떼따'],
+      zh: ['最近在忙什么？', 'Zuìjìn zài máng shénme?', '쭈이진 짜이 망 션머'],
+      fr: ["Qu'est-ce que tu deviens ?", '', '께스끄 뛰 드비앵'],
+      de: ["Was gibt's Neues?", '', '바스 깁츠 노이에스'],
+      es: ['¿Qué has estado haciendo?', '', '께 아스 에스따도 아시엔도'],
+      ru: ['Чем занимаешься?', "Chem zanimayesh'sya?", '쳄 자니마예시샤'],
+      ar: ['إيه الأخبار؟', 'ēh el-akhbār?', '에 엘아크바르'],
+      note: {
+        zh: '직역하면 "요즘 뭐 하느라 바빠?" 중국에서는 바쁜 게 안부의 기본값이다.',
+        ar: '직역하면 "무슨 소식 있어?" 이집트식 근황 인사.'
+      }
+    },
+    {
+      en: 'Fingers crossed.', ko: '잘되길 빌어.', cat: 'daily',
+      ja: ['うまくいくといいね。', 'Umaku iku to ii ne', '우마꾸 이꾸또 이-네'],
+      zh: ['祝你好运！', 'Zhù nǐ hǎoyùn!', '쭈 니 하오윈'],
+      fr: ['Je croise les doigts.', '', '쥬 끄루아즈 레 두아'],
+      de: ['Ich drück dir die Daumen.', '', '이히 드뤽 디어 디 다우멘'],
+      es: ['Crucemos los dedos.', '', '끄루세모스 로스 데도스'],
+      ru: ['Держу кулачки.', 'Derzhu kulachki', '졔르주 꿀라치끼'],
+      ar: ['إن شاء الله خير', 'enshallah kheir', '인샬라 케이르'],
+      note: {
+        ja: '일본엔 손가락 꼬는 관습이 없어서 "잘되면 좋겠다"로 말한다.',
+        de: '독일은 손가락을 꼬지 않는다. 엄지를 손 안에 쥐고 "엄지를 눌러준다"고 말한다.',
+        ru: '러시아도 손가락 대신 주먹을 쥔다. 직역하면 "주먹을 쥐고 있을게".',
+        ar: '"신의 뜻이라면 좋은 일이 있을 것". 이집트에서 가장 자주 듣는 문장 중 하나다.'
+      }
+    },
+    {
+      en: 'Take it easy.', ko: '무리하지 마.', cat: 'daily',
+      ja: ['無理しないでね。', 'Muri shinaide ne', '무리 시나이데네'],
+      zh: ['别太累了。', 'Bié tài lèi le', '비에 타이 레이 러'],
+      fr: ['Ne te surmène pas.', '', '느 뜨 쉬르멘 빠'],
+      de: ['Übernimm dich nicht.', '', '위버님 디히 니히트'],
+      es: ['Tómatelo con calma.', '', '또마뗄로 꼰 깔마'],
+      ru: ['Береги себя.', 'Beregi sebya', '볘례기 시뱌'],
+      ar: ['خد بالك من نفسك', 'khod bālak men nafsak', '코드 발락 멘 납삭'],
+      note: {
+        ru: '직역하면 "몸 아껴". 헤어질 때의 다정한 인사로도 쓴다.',
+        ar: '"몸 잘 챙겨". 여성에게는 khodi bālek men nafsek.'
+      }
+    },
+    {
+      en: 'Are you free this weekend?', ko: '이번 주말에 시간 돼?', cat: 'daily',
+      ja: ['今週末、空いてる？', 'Konshūmatsu, aiteru?', '콘슈-마츠 아이떼루'],
+      zh: ['这个周末有空吗？', 'Zhège zhōumò yǒu kòng ma?', '쩌거 쩌우모 요우콩 마'],
+      fr: ['Tu es libre ce week-end ?', '', '뛰 에 리브르 스 위껜드'],
+      de: ['Hast du am Wochenende Zeit?', '', '하스트 두 암 보헨엔데 차이트'],
+      es: ['¿Estás libre este fin de semana?', '', '에스따스 리브레 에스떼 핀 데 세마나'],
+      ru: ['Ты свободен в эти выходные?', 'Ty svoboden v eti vykhodnye?', '뜨이 스바보졘 브 에찌 브이호드느이예'],
+      ar: ['فاضي آخر الأسبوع؟', 'fāḍi ākher el-esbūʿ?', '파디 아케르 엘에스부'],
+      note: {
+        ru: '상대가 여성이면 свободна(스바보드나).',
+        ar: '여성에게는 fāḍya(파디야).'
+      }
+    },
+    {
+      en: 'Something came up.', ko: '갑자기 일이 생겼어.', cat: 'daily',
+      ja: ['ちょっと用事ができちゃって。', 'Chotto yōji ga dekichatte', '쵸또 요-지가 데끼짯떼'],
+      zh: ['我临时有点事。', 'Wǒ línshí yǒudiǎn shì', '워 린스 요우디엔 스'],
+      fr: ["J'ai eu un empêchement.", '', '줴 위 앙 앙뻬슈망'],
+      de: ['Mir ist etwas dazwischengekommen.', '', '미어 이스트 에트바스 다츠비셴게코멘'],
+      es: ['Me ha surgido algo.', '', '메 아 수르히도 알고'],
+      ru: ['У меня изменились планы.', "U menya izmenilis' plany", '우 미냐 이즈미닐리시 쁠라느이'],
+      ar: ['جالي ظرف', 'gāli ẓarf', '갈리 자르프'],
+      note: {
+        ru: '직역하면 "계획이 바뀌었다". 러시아어로 "일이 생겼다"를 직역하면 사고가 난 것처럼 들린다.',
+        ar: '"사정이 생겼다". 이유를 묻지 않는 게 예의인 표현이다.'
+      }
+    },
+    {
+      en: 'I owe you one.', ko: '내가 신세 졌다.', cat: 'daily',
+      ja: ['借りができたね。', 'Kari ga dekita ne', '카리가 데끼따네'],
+      zh: ['我欠你一个人情。', 'Wǒ qiàn nǐ yí ge rénqíng', '워 치엔 니 이거 런칭'],
+      fr: ["Je t'en dois une.", '', '쥬 땅 두아 윈'],
+      de: ['Ich schulde dir was.', '', '이히 슐데 디어 바스'],
+      es: ['Te debo una.', '', '떼 데보 우나'],
+      ru: ['Я твой должник.', 'Ya tvoy dolzhnik', '야 뜨보이 달쥬닉'],
+      ar: ['جميلك على راسي', 'gamīlak ʿala rāsi', '가밀락 알라 라시'],
+      note: {
+        zh: '人情(런칭)은 주고받는 마음의 빚이다. 중국 인간관계의 핵심 단어.',
+        ar: '직역하면 "네 은혜는 내 머리 위에". 아주 정중하고 따뜻한 감사.'
+      }
+    },
+    {
+      en: 'Give me a sec.', ko: '잠깐만.', cat: 'daily',
+      ja: ['ちょっと待って。', 'Chotto matte', '쵸또 맛떼'],
+      zh: ['等一下。', 'Děng yíxià', '덩 이샤'],
+      fr: ['Une seconde.', '', '윈 스공드'],
+      de: ['Moment mal.', '', '모멘트 말'],
+      es: ['Un segundo.', '', '운 세군도'],
+      ru: ['Секунду.', 'Sekundu', '시꾼두'],
+      ar: ['ثانية واحدة', 'sanya waḥda', '사니야 와흐다']
+    },
+
+    /* ------------------------------------------------ 여행 */
+    {
+      en: "I'm here on business.", ko: '업무차 왔습니다.', cat: 'travel',
+      ja: ['仕事で来ました。', 'Shigoto de kimashita', '시고또데 기마시따'],
+      zh: ['我是来出差的。', 'Wǒ shì lái chūchāi de', '워 스 라이 추차이 더'],
+      fr: ['Je suis ici pour affaires.', '', '쥬 쉬 이씨 뿌르 아페르'],
+      de: ['Ich bin geschäftlich hier.', '', '이히 빈 게셰프틀리히 히어'],
+      es: ['Estoy aquí por trabajo.', '', '에스또이 아끼 뽀르 뜨라바호'],
+      ru: ['Я здесь по работе.', "Ya zdes' po rabote", '야 즈졔시 빠 라보쩨'],
+      ar: ['أنا جاي شغل', 'ana gāy shoghl', '아나 가이 쇼글'],
+      note: { ar: '이집트 입국심사는 대개 영어로 진행된다. 이 한마디는 분위기를 부드럽게 만드는 용도.' }
+    },
+    {
+      en: 'Nothing to declare.', ko: '신고할 물품 없습니다.', cat: 'travel',
+      ja: ['申告するものはありません。', 'Shinkoku suru mono wa arimasen', '신꼬꾸 스루 모노와 아리마셍'],
+      zh: ['没有需要申报的东西。', 'Méiyǒu xūyào shēnbào de dōngxi', '메이요우 쉬야오 션빠오 더 똥시'],
+      fr: ['Rien à déclarer.', '', '리앵 아 데끌라레'],
+      de: ['Nichts zu verzollen.', '', '니히츠 추 페어촐렌'],
+      es: ['Nada que declarar.', '', '나다 께 데끌라라르'],
+      ru: ['Мне нечего декларировать.', "Mne nechego deklarirovat'", '므녜 녜체바 졔끌라리라바찌'],
+      ar: ['مفيش حاجة أعلن عنها', 'mafīsh ḥāga aʿlen ʿanha', '마피쉬 하가 아을렌 안하']
+    },
+    {
+      en: "My luggage didn't come out.", ko: '수하물이 안 나왔어요.', cat: 'travel',
+      ja: ['荷物が出てきません。', 'Nimotsu ga dete kimasen', '니모츠가 데떼 기마셍'],
+      zh: ['我的行李没有出来。', 'Wǒ de xíngli méiyǒu chūlái', '워더 싱리 메이요우 추라이'],
+      fr: ['Mes bagages ne sont pas arrivés.', '', '메 바가쥬 느 쏭 빠 자리베'],
+      de: ['Mein Gepäck ist nicht angekommen.', '', '마인 게펙 이스트 니히트 안게코멘'],
+      es: ['Mi equipaje no ha salido.', '', '미 에끼빠헤 노 아 살리도'],
+      ru: ['Мой багаж не пришёл.', 'Moy bagazh ne prishyol', '모이 바가쉬 니 쁘리숄'],
+      ar: ['شنطتي مطلعتش', 'shanṭeti maṭleʿetsh', '샨테티 마틀레에트쉬']
+    },
+    {
+      en: 'I have a reservation under Kim.', ko: '김으로 예약했습니다.', cat: 'travel',
+      ja: ['キムで予約しています。', 'Kimu de yoyaku shite imasu', '키무데 요야꾸 시떼이마스'],
+      zh: ['我用金的名字预订了。', 'Wǒ yòng Jīn de míngzi yùdìng le', '워 용 진 더 밍쯔 위딩 러'],
+      fr: ["J'ai une réservation au nom de Kim.", '', '줴 윈 레제르바시옹 오 농 드 킴'],
+      de: ['Ich habe eine Reservierung auf den Namen Kim.', '', '이히 하베 아이네 레저비룽 아우프 덴 나멘 킴'],
+      es: ['Tengo una reserva a nombre de Kim.', '', '뗑고 우나 레세르바 아 놈브레 데 킴'],
+      ru: ['У меня бронь на имя Ким.', "U menya bron' na imya Kim", '우 미냐 브론 나 이먀 킴'],
+      ar: ['عندي حجز باسم كيم', 'ʿandi ḥagz besm Kim', '안디 하그즈 베슴 킴'],
+      note: { zh: '金은 김 씨의 중국어 표기다. 여권 영문 이름을 보여주면 더 빠르다.' }
+    },
+    {
+      en: 'Is breakfast included?', ko: '조식 포함인가요?', cat: 'travel',
+      ja: ['朝食は付いていますか？', 'Chōshoku wa tsuite imasu ka?', '쵸-쇼꾸와 츠이떼 이마스까'],
+      zh: ['包含早餐吗？', 'Bāohán zǎocān ma?', '빠오한 자오찬 마'],
+      fr: ['Le petit-déjeuner est compris ?', '', '르 쁘띠 데쥬네 에 꽁프리'],
+      de: ['Ist das Frühstück inklusive?', '', '이스트 다스 프뤼슈튁 인클루지베'],
+      es: ['¿El desayuno está incluido?', '', '엘 데사유노 에스따 인끌루이도'],
+      ru: ['Завтрак включён?', 'Zavtrak vklyuchyon?', '자프뜨락 프끌류춈'],
+      ar: ['الفطار معاه؟', 'el-feṭār maʿāh?', '엘페타르 마아']
+    },
+    {
+      en: 'Sorry to bother you, but…', ko: '번거롭게 해서 죄송한데요…', cat: 'travel',
+      ja: ['お手数ですが…', 'Otesū desu ga…', '오떼스-데스가'],
+      zh: ['不好意思，打扰一下…', 'Bù hǎoyìsi, dǎrǎo yíxià…', '뿌하오이쓰 다라오 이샤'],
+      fr: ['Désolé de vous déranger, mais…', '', '데졸레 드 부 데랑제 메'],
+      de: ['Entschuldigen Sie die Störung, aber…', '', '엔트슐디겐 지 디 슈퇴룽 아버'],
+      es: ['Perdone la molestia, pero…', '', '뻬르도네 라 몰레스띠아 뻬로'],
+      ru: ['Простите за беспокойство, но…', 'Prostite za bespokoystvo, no…', '쁘라스찌쩨 자 볘스빠꼬이스뜨바 노'],
+      ar: ['آسف على الإزعاج، بس…', 'āsef ʿala el-ezʿāg, bass…', '아세프 알라 엘에즈아그 바스'],
+      note: { ja: 'お手数ですが는 "수고를 끼쳐 죄송하지만". 호텔 프런트에 요청할 때 첫마디로 딱 맞는다.' }
+    },
+    {
+      en: 'What would you recommend?', ko: '뭘 추천하시나요?', cat: 'travel',
+      ja: ['おすすめは何ですか？', 'Osusume wa nan desu ka?', '오스스메와 난데스까'],
+      zh: ['有什么推荐的吗？', 'Yǒu shénme tuījiàn de ma?', '요우 션머 투이지엔 더 마'],
+      fr: ["Qu'est-ce que vous me conseillez ?", '', '께스끄 부 므 꽁세이에'],
+      de: ['Was würden Sie empfehlen?', '', '바스 뷔르덴 지 엠펠렌'],
+      es: ['¿Qué me recomienda?', '', '께 메 레꼬미엔다'],
+      ru: ['Что вы посоветуете?', 'Chto vy posovetuyete?', '슈또 브이 빠사볘뚜예쩨'],
+      ar: ['تنصحني بإيه؟', 'tenṣaḥni b-ēh?', '텐사흐니 비에']
+    },
+    {
+      en: "I can't do anything too spicy.", ko: '너무 매운 건 못 먹어요.', cat: 'travel',
+      ja: ['辛すぎるのは苦手です。', 'Karasugiru no wa nigate desu', '카라스기루노와 니가떼데스'],
+      zh: ['我不能吃太辣的。', 'Wǒ bù néng chī tài là de', '워 뿌넝 츠 타이 라 더'],
+      fr: ['Je ne supporte pas les plats trop épicés.', '', '쥬 느 쉬뽀르뜨 빠 레 쁠라 뜨로 에삐세'],
+      de: ['Ich vertrage nichts zu Scharfes.', '', '이히 페어트라게 니히츠 추 샤르페스'],
+      es: ['No puedo con lo muy picante.', '', '노 뿌에도 꼰 로 무이 삐깐떼'],
+      ru: ['Мне нельзя слишком острое.', "Mne nel'zya slishkom ostroye", '므녜 녤쟈 슬리쉬깜 오스뜨라예'],
+      ar: ['مبحبش الحراق أوي', 'ma-baḥebbesh el-ḥarrāʾ awi', '마바헵베쉬 엘하라 아위'],
+      note: { zh: '주문할 때는 不要辣(부야오 라, 맵지 않게)가 가장 확실하다.' }
+    },
+    {
+      en: 'Could we get the check?', ko: '계산서 주시겠어요?', cat: 'travel',
+      ja: ['お会計お願いします。', 'Okaikei onegai shimasu', '오까이께- 오네가이시마스'],
+      zh: ['买单。', 'Mǎidān', '마이단'],
+      fr: ["L'addition, s'il vous plaît.", '', '라디시옹 실 부 쁠레'],
+      de: ['Die Rechnung, bitte.', '', '디 레히눙 비테'],
+      es: ['La cuenta, por favor.', '', '라 꾸엔따 뽀르 파보르'],
+      ru: ['Счёт, пожалуйста.', 'Schyot, pozhaluysta', '숏 빠좔스따'],
+      ar: ['الحساب لو سمحت', 'el-ḥesāb law samaḥt', '엘헤삽 라우 사마흐트'],
+      note: {
+        zh: '대만에서는 结账(지에장)이 더 자연스럽다.',
+        de: '독일에서는 같이 낼지 따로 낼지 묻는다. 따로면 Getrennt, bitte(게트렌트 비테).'
+      }
+    },
+    {
+      en: 'Could you point me toward the station?', ko: '역이 어느 쪽인가요?', cat: 'travel',
+      ja: ['駅はどちらですか？', 'Eki wa dochira desu ka?', '에끼와 도찌라데스까'],
+      zh: ['请问火车站怎么走？', 'Qǐngwèn huǒchēzhàn zěnme zǒu?', '칭원 후오처짠 쩐머 조우'],
+      fr: ["Vous pouvez m'indiquer la gare ?", '', '부 뿌베 맹디께 라 가르'],
+      de: ['Wie komme ich zum Bahnhof?', '', '비 코메 이히 춤 반호프'],
+      es: ['¿Me indica dónde está la estación?', '', '메 인디까 돈데 에스따 라 에스따시온'],
+      ru: ['Не подскажете, как пройти к вокзалу?', 'Ne podskazhete, kak proyti k vokzalu?', '니 빠뜨스까졔쩨 깍 쁘라이찌 크 바그잘루'],
+      ar: ['المحطة منين لو سمحت؟', 'el-maḥaṭṭa menēn law samaḥt?', '엘마핫따 메네인 라우 사마흐트'],
+      note: { zh: '지하철역이면 地铁站(디톄짠).' }
+    },
+    {
+      en: 'Is it walkable from here?', ko: '여기서 걸어갈 만한가요?', cat: 'travel',
+      ja: ['ここから歩いて行けますか？', 'Koko kara aruite ikemasu ka?', '코꼬까라 아루이떼 이께마스까'],
+      zh: ['从这儿走过去远吗？', 'Cóng zhèr zǒu guòqù yuǎn ma?', '총 쩔 조우 꿔취 위엔 마'],
+      fr: ["On peut y aller à pied d'ici ?", '', '옹 뾔 이 알레 아 삐에 디씨'],
+      de: ['Kann man von hier zu Fuß gehen?', '', '칸 만 폰 히어 추 푸스 게엔'],
+      es: ['¿Se puede ir andando desde aquí?', '', '세 뿌에데 이르 안단도 데스데 아끼'],
+      ru: ['Отсюда можно дойти пешком?', 'Otsyuda mozhno doyti peshkom?', '앗슈다 모쥬나 다이찌 삐쉬꼼'],
+      ar: ['ينفع أروح مشي من هنا؟', 'yenfaʿ arūḥ mashy men hena?', '옌파 아루흐 마쉬 멘 헤나']
+    },
+    {
+      en: 'Do I need to change trains?', ko: '환승해야 하나요?', cat: 'travel',
+      ja: ['乗り換えは必要ですか？', 'Norikae wa hitsuyō desu ka?', '노리까에와 히츠요-데스까'],
+      zh: ['需要换乘吗？', 'Xūyào huànchéng ma?', '쉬야오 환청 마'],
+      fr: ['Je dois changer de train ?', '', '쥬 두아 샹제 드 트랭'],
+      de: ['Muss ich umsteigen?', '', '무스 이히 움슈타이겐'],
+      es: ['¿Tengo que hacer transbordo?', '', '뗑고 께 아세르 뜨란스보르도'],
+      ru: ['Мне нужна пересадка?', 'Mne nuzhna peresadka?', '므녜 누쥬나 뼤례사뜨까'],
+      ar: ['لازم أغيّر القطر؟', 'lāzem aghayyar el-ʾaṭr?', '라젬 아가야르 엘아트르']
+    },
+    {
+      en: 'Just browsing, thanks.', ko: '그냥 둘러보는 중이에요.', cat: 'travel',
+      ja: ['見ているだけです。', 'Mite iru dake desu', '미떼이루 다께데스'],
+      zh: ['我随便看看，谢谢。', 'Wǒ suíbiàn kànkan, xièxie', '워 수이비엔 칸칸 셰셰'],
+      fr: ['Je regarde seulement, merci.', '', '쥬 르가르드 쐴르망 메르시'],
+      de: ['Ich schaue nur, danke.', '', '이히 샤우에 누어 당케'],
+      es: ['Solo estoy mirando, gracias.', '', '솔로 에스또이 미란도 그라시아스'],
+      ru: ['Я просто смотрю, спасибо.', 'Ya prosto smotryu, spasibo', '야 쁘로스따 스마뜨류 스파시바'],
+      ar: ['بتفرج بس، شكراً', 'batfarrag bass, shokran', '바트파라그 바스 쇼크란']
+    },
+    {
+      en: 'Do you have this in a medium?', ko: '이거 미디엄 있나요?', cat: 'travel',
+      ja: ['これのMサイズはありますか？', 'Kore no emu saizu wa arimasu ka?', '코레노 에무사이즈와 아리마스까'],
+      zh: ['这个有M号吗？', 'Zhège yǒu M hào ma?', '쩌거 요우 엠하오 마'],
+      fr: ["Vous l'avez en M ?", '', '부 라베 앙 엠'],
+      de: ['Haben Sie das in M?', '', '하벤 지 다스 인 엠'],
+      es: ['¿Lo tiene en talla M?', '', '로 띠에네 엔 따야 에메'],
+      ru: ['У вас есть это в размере M?', "U vas yest' eto v razmere M?", '우 바스 예스찌 에따 브 라즈몌례 엠'],
+      ar: ['عندك ده مقاس ميديم؟', 'ʿandak da maʾās medium?', '안닥 다 마아스 미디엄']
+    },
+    {
+      en: "I'd like to return this.", ko: '반품하고 싶습니다.', cat: 'travel',
+      ja: ['これを返品したいのですが。', 'Kore o henpin shitai no desu ga', '코레오 헴삥 시따이노 데스가'],
+      zh: ['我想退这个。', 'Wǒ xiǎng tuì zhège', '워 샹 투이 쩌거'],
+      fr: ['Je voudrais rendre cet article.', '', '쥬 부드레 랑드르 세 따르띠끌'],
+      de: ['Ich möchte das zurückgeben.', '', '이히 뫼히테 다스 추뤽게벤'],
+      es: ['Quisiera devolver esto.', '', '끼시에라 데볼베르 에스또'],
+      ru: ['Я хочу вернуть это.', "Ya khochu vernut' eto", '야 하추 볘르누찌 에따'],
+      ar: ['عايز أرجّع ده', 'ʿāyez araggaʿ da', '아예즈 아라가 다'],
+      note: { ar: '여성 화자는 ʿāyza(아이자).' }
+    },
+    {
+      en: 'I need to report a lost passport.', ko: '여권 분실 신고를 해야 합니다.', cat: 'travel',
+      ja: ['パスポートをなくしました。届け出をしたいです。', 'Pasupōto o nakushimashita. Todokede o shitai desu', '파스뽀-또오 나꾸시마시따 토도께데오 시따이데스'],
+      zh: ['我的护照丢了，我要报失。', 'Wǒ de hùzhào diū le, wǒ yào bàoshī', '워더 후자오 띠우러 워 야오 빠오스'],
+      fr: ["J'ai perdu mon passeport, je dois le déclarer.", '', '줴 뻬르뒤 몽 빠스뽀르 쥬 두아 르 데끌라레'],
+      de: ['Ich habe meinen Pass verloren und muss das melden.', '', '이히 하베 마이넨 파스 페어로렌 운트 무스 다스 멜덴'],
+      es: ['He perdido mi pasaporte y necesito denunciarlo.', '', '에 뻬르디도 미 빠사뽀르떼 이 네세시또 데눈시아를로'],
+      ru: ['Я потерял паспорт, мне нужно заявить об этом.', "Ya poteryal pasport, mne nuzhno zayavit' ob etom", '야 빠쪠랼 빠스뽀르뜨 므녜 누쥬나 자야비찌 압 에뜸'],
+      ar: ['الباسبور بتاعي ضاع وعايز أبلّغ', 'el-basbōr betāʿi ḍāʿ we ʿāyez aballagh', '엘바스보르 베타이 다 웨 아예즈 아발라그'],
+      note: { ru: '여성 화자는 потеряла(빠쪠랼라).' }
+    },
+    {
+      en: 'Could you write that down for me?', ko: '적어주시겠어요?', cat: 'travel',
+      ja: ['書いていただけますか？', 'Kaite itadakemasu ka?', '카이떼 이따다께마스까'],
+      zh: ['能帮我写下来吗？', 'Néng bāng wǒ xiě xiàlái ma?', '넝 빵 워 시에 시아라이 마'],
+      fr: ["Vous pouvez me l'écrire ?", '', '부 뿌베 므 레끄리르'],
+      de: ['Könnten Sie mir das aufschreiben?', '', '쾬텐 지 미어 다스 아우프슈라이벤'],
+      es: ['¿Me lo puede escribir?', '', '메 로 뿌에데 에스끄리비르'],
+      ru: ['Можете это записать?', "Mozhete eto zapisat'?", '모졔쩨 에따 자삐사찌'],
+      ar: ['ممكن تكتبهولي؟', 'momken tektebhūli?', '몸켄 텍텝훌리'],
+      note: { zh: '중국에서는 이게 최강의 문장이다. 발음이 안 통해도 한자는 통한다.' }
+    },
+
+    /* ------------------------------------------------ 현장·업무 */
+    {
+      en: "I'm a director out of Seoul.", ko: '서울에서 활동하는 감독입니다.', cat: 'film',
+      ja: ['ソウルを拠点にしている監督です。', 'Sōru o kyoten ni shite iru kantoku desu', '소-루오 쿄뗀니 시떼이루 칸또꾸데스'],
+      zh: ['我是在首尔工作的导演。', "Wǒ shì zài Shǒu'ěr gōngzuò de dǎoyǎn", '워 스 짜이 쇼우얼 꽁쭈오 더 다오옌'],
+      fr: ['Je suis réalisateur, basé à Séoul.', '', '쥬 쉬 레알리자뙤르 바제 아 세울'],
+      de: ['Ich bin Regisseur aus Seoul.', '', '이히 빈 레지쇠어 아우스 서울'],
+      es: ['Soy director, trabajo en Seúl.', '', '소이 디렉또르 뜨라바호 엔 세울'],
+      ru: ['Я режиссёр из Сеула.', 'Ya rezhissyor iz Seula', '야 례쥐쇼르 이즈 세울라'],
+      ar: ['أنا مخرج من سيول', 'ana mokhreg men Seoul', '아나 모크레그 멘 서울'],
+      note: { fr: '영화감독은 réalisateur다. metteur en scène(메뙤르 앙 센)은 주로 연극 연출가.' }
+    },
+    {
+      en: "Let's take it from the top.", ko: '처음부터 다시 갑시다.', cat: 'film',
+      ja: ['頭からもう一回いきましょう。', 'Atama kara mō ikkai ikimashō', '아따마까라 모- 익까이 이끼마쇼-'],
+      zh: ['从头再来一遍。', 'Cóng tóu zài lái yí biàn', '총 토우 짜이 라이 이 비엔'],
+      fr: ['On la reprend depuis le début.', '', '옹 라 르프랑 드쀠 르 데뷔'],
+      de: ['Noch mal von vorne.', '', '노흐 말 폰 포르네'],
+      es: ['Otra vez desde el principio.', '', '오뜨라 베스 데스데 엘 쁘린시삐오'],
+      ru: ['Давайте с самого начала.', 'Davayte s samogo nachala', '다바이쩨 스 사모바 나찰라'],
+      ar: ['من الأول تاني', 'men el-awwel tāni', '멘 엘아왈 타니']
+    },
+    {
+      en: "That's a wrap.", ko: '촬영 종료합니다.', cat: 'film',
+      ja: ['これにて撮影終了です！お疲れさまでした。', 'Kore nite satsuei shūryō desu! Otsukaresama deshita', '코레니떼 사츠에- 슈-료-데스 오츠까레사마데시따'],
+      zh: ['收工！', 'Shōugōng!', '쇼우꽁'],
+      fr: ["C'est fini pour aujourd'hui, merci à tous !", '', '쎄 피니 뿌르 오쥬르뒤 메르시 아 뚜스'],
+      de: ['Drehschluss für heute! Danke an alle.', '', '드레슐루스 퓌어 호이테 당케 안 알레'],
+      es: ['¡Terminamos por hoy! Gracias a todos.', '', '떼르미나모스 뽀르 오이 그라시아스 아 또도스'],
+      ru: ['На сегодня всё! Всем спасибо!', "Na segodnya vsyo! Vsem spasibo!", '나 시보드냐 프쇼 프셈 스파시바'],
+      ar: ['خلصنا تصوير النهارده! شكراً لكل الناس', 'khalaṣna taṣwīr ennaharda! shokran le-koll en-nās', '칼라스나 타스위르 엔나하르다 쇼크란 레콜 엔나스'],
+      note: {
+        ja: '일본 현장에서 お疲れさまでした(수고하셨습니다)는 빠뜨리면 안 되는 인사다.',
+        zh: '하루 촬영 끝은 收工, 영화 전체 크랭크업은 杀青(샤칭).',
+        fr: '좋은 테이크를 건졌을 때는 C\'est dans la boîte !(쎄 당 라 부아뜨, "상자에 담겼다")',
+        de: '좋은 테이크를 건졌을 때는 Das ist im Kasten!(다스 이스트 임 카스텐) — 독일어도 "상자 안에".',
+        es: '영화 전체가 끝나면 ¡Fin de rodaje!(핀 데 로다헤).'
+      }
+    },
+    {
+      en: 'Not that I know of.', ko: '내가 아는 한은 아니에요.', cat: 'film',
+      ja: ['私の知る限りでは、ないです。', 'Watashi no shiru kagiri de wa, nai desu', '와따시노 시루 카기리데와 나이데스'],
+      zh: ['据我所知，没有。', 'Jù wǒ suǒ zhī, méiyǒu', '쥐 워 쑤오 즈 메이요우'],
+      fr: ['Pas à ma connaissance.', '', '빠 아 마 꼬네상스'],
+      de: ['Nicht dass ich wüsste.', '', '니히트 다스 이히 뷔스테'],
+      es: ['Que yo sepa, no.', '', '께 요 세빠 노'],
+      ru: ['Насколько я знаю, нет.', "Naskol'ko ya znayu, net", '나스꼴까 야 즈나유 녜트'],
+      ar: ['على حد علمي لأ', 'ʿala ḥadd ʿelmi laʾ', '알라 핫드 엘미 라']
+    },
+    {
+      en: "I'll be honest with you —", ko: '솔직히 말씀드리면,', cat: 'film',
+      ja: ['正直に言うと…', 'Shōjiki ni iu to…', '쇼-지끼니 이우또'],
+      zh: ['说实话…', 'Shuō shíhuà…', '슈오 스화'],
+      fr: ['Pour être honnête…', '', '뿌르 에뜨르 오네뜨'],
+      de: ['Ehrlich gesagt…', '', '에얼리히 게작트'],
+      es: ['Para serte sincero…', '', '빠라 세르떼 신세로'],
+      ru: ['Честно говоря…', 'Chestno govorya…', '체스나 가바랴'],
+      ar: ['بصراحة…', 'beṣarāḥa…', '베사라하']
+    }
+  ]
+};

@@ -16,14 +16,14 @@ data/slang.json        ──→  앱이 하루 한 번 스스로 확인 → 버
 ## 1. 앱을 GitHub Pages에 올리기
 
 저장소 **Settings → Pages → Source**를 `GitHub Actions`로 바꾼다.
-그 뒤 브랜치에 푸시하면 `.github/workflows/pages.yml`이 돌면서
+그 뒤 main에 푸시하면 `.github/workflows/pages.yml`이 돌면서
 `tools/export-json.js`로 데이터를 뽑고 사이트를 배포한다.
 
 배포되면 이런 주소가 생긴다.
 
 ```
 https://kumpro.github.io/hykai/                    앱
-https://kumpro.github.io/hykai/data/expressions.json   표현 112개
+https://kumpro.github.io/hykai/data/expressions.json   표현 133개
 https://kumpro.github.io/hykai/data/slang.json         신조어 팩
 ```
 
@@ -46,7 +46,7 @@ https라서 휴대폰에서도 마이크가 열리고, 홈 화면에 앱으로 �
 ### 왜 "내 복습 카드"가 아니라 회전인가
 
 앱의 라이트너 기록은 브라우저의 `localStorage`에만 있다. n8n에서는 읽을 수 없다.
-그래서 여기서는 전체 112개를 날짜순으로 12개씩 돌린다 — 열흘이면 한 바퀴다.
+그래서 여기서는 전체 133개를 날짜순으로 12개씩 돌린다 — 열하루면 한 바퀴다.
 받은 메일은 예습이고, 진짜 복습은 앱에서 한다. 이 구분을 지키는 편이 낫다.
 개인 기록까지 서버로 보내면 앱이 서버 없이 굴러가는 장점이 사라진다.
 

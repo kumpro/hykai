@@ -18,7 +18,12 @@
       theme: 'auto',      // auto = 모드별 시대 테마 자동 적용
       pace: 'standard',   // standard | dense (초반 촘촘)
       packUrl: '',        // 비워두면 자동 갱신하지 않는다
-      packChecked: 0      // 마지막 확인 시각
+      packChecked: 0,     // 마지막 확인 시각
+      multi: {
+        on: true,         // 카드·대사에 다국어 접이식 칸을 붙일지
+        langs: ['ja', 'zh', 'fr', 'de', 'es', 'ru', 'ar'],  // 보여줄 언어
+        focus: ''         // 표현집에서 한 언어만 크게 볼 때 그 언어
+      }
     },
     custom: { scenes: [] },   // 로그라인으로 생성한 장면
     exams: [],                // 시험 응시 기록

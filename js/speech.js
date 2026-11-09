@@ -16,9 +16,12 @@
   function token() { return generation; }
   function alive(t) { return t === generation; }
 
+  var allVoices = [];   // 다국어 표현집용 — 영어 외 목소리까지 전부
+
   function loadVoices() {
     if (!synth) return;
-    voices = synth.getVoices().filter(function (v) { return /^en(-|_)/i.test(v.lang); });
+    allVoices = synth.getVoices();
+    voices = allVoices.filter(function (v) { return /^en(-|_)/i.test(v.lang); });
   }
   if (synth) {
     loadVoices();
@@ -76,6 +79,48 @@
     generation += 1;
     if (synth) synth.cancel();
     currentUtter = null;
+  }
+
+  /* ---------- 다른 언어로 읽기 ----------
+   * tag는 'ja-JP', 'ar-EG' 같은 언어 태그다.
+   * 정확히 같은 지역 목소리를 먼저 찾고, 없으면 같은 언어의 아무 목소리를 쓴다
+   * (이집트 목소리가 없으면 다른 아랍어 목소리로 읽는다).
+   *
+   * 그 언어 목소리가 기기에 아예 없으면 읽지 않고 'no-voice'를 돌려준다.
+   * 그냥 읽게 두면 영어 목소리가 일본어를 더듬거리며 읽어서 오히려 해롭다. */
+
+  function voiceFor(tag) {
+    var lang = tag.split('-')[0].toLowerCase();
+    var norm = function (s) { return (s || '').replace('_', '-').toLowerCase(); };
+    return allVoices.find(function (v) { return norm(v.lang) === tag.toLowerCase(); })
+      || allVoices.find(function (v) { return norm(v.lang).split('-')[0] === lang; })
+      || null;
+  }
+
+  function hasVoiceFor(tag) {
+    if (!synth) return false;
+    if (!allVoices.length) loadVoices();
+    return !!voiceFor(tag);
+  }
+
+  function speakIn(text, tag) {
+    return new Promise(function (resolve) {
+      if (!synth || !text) { resolve('unsupported'); return; }
+      if (!allVoices.length) loadVoices();
+      var v = voiceFor(tag);
+      // 목소리 목록이 아직 비어 있는 기기(일부 안드로이드 첫 실행)는 언어 태그만 주고 맡겨본다
+      if (!v && allVoices.length) { resolve('no-voice'); return; }
+
+      synth.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      if (v) { u.voice = v; u.lang = v.lang; } else { u.lang = tag; }
+      u.rate = Math.max(0.6, Math.min(1.1, (Store.state.settings.rate || 0.9)));
+      u.pitch = 1;
+      u.onend = function () { currentUtter = null; resolve('ok'); };
+      u.onerror = function () { currentUtter = null; resolve('error'); };
+      currentUtter = u;
+      synth.speak(u);
+    });
   }
 
   /* ---------- 음성 인식 ---------- */
@@ -215,6 +260,7 @@
     speak: speak, stop: stop, listVoices: listVoices, pickVoice: pickVoice,
     canListen: canListen, listen: listen, stopListening: stopListening,
     score: markup, supported: !!synth,
-    token: token, alive: alive
+    token: token, alive: alive,
+    speakIn: speakIn, hasVoiceFor: hasVoiceFor
   };
 })();

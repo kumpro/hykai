@@ -17,7 +17,8 @@
     home: 'modern', review: 'modern', schedule: 'modern',
     exam: 'medieval', 'exam-run': 'medieval',
     grammar: 'ancient', drill: 'ancient',
-    studio: 'future'
+    studio: 'future',
+    phrasebook: 'deco'    // 증기선과 여행 포스터의 시대 — 세계 여행 표현집에 어울린다
   };
 
   function applyTheme() {
@@ -102,9 +103,10 @@
       { t: '학습 점검', d: '기록·예보·약점', i: '📊', go: { name: 'schedule' } },
       { t: '듣기 시험', d: '토익 유형', i: '🎧', go: { name: 'exam' } },
       { t: '문법 집중', d: '여섯 지점 드릴', i: '🧠', go: { name: 'grammar' } },
-      { t: '피칭 스튜디오', d: '내 작품으로', i: '🎞️', go: { name: 'studio' } }
+      { t: '피칭 스튜디오', d: '내 작품으로', i: '🎞️', go: { name: 'studio' } },
+      { t: '7개 국어 표현집', d: MULTILANG.count() + '문장 · 일본어 중국어 프랑스어 독일어 스페인어 러시아어 아랍어', i: '🌐', go: { name: 'phrasebook' }, wide: true }
     ].forEach(function (x) {
-      var b = el('<button class="card tool"><span class="tool-i">' + x.i + '</span>' +
+      var b = el('<button class="card tool' + (x.wide ? ' wide' : '') + '"><span class="tool-i">' + x.i + '</span>' +
         '<span class="tool-t">' + esc(x.t) + '</span><span class="tool-d">' + esc(x.d) + '</span></button>');
       b.onclick = function () { go(x.go); };
       tools.appendChild(b);
@@ -308,6 +310,10 @@
       row.querySelector('[data-a=slow]').onclick = function () { Speech.speak(text, { rate: 0.62 }); };
       var sayBtn = row.querySelector('[data-a=say]');
       if (sayBtn) sayBtn.onclick = function () { shadow(text, row, sayBtn); };
+
+      // 대사 속에 표현집 문장이 들어 있으면 7개 국어 칸을 붙인다 (기본은 접힌 상태)
+      var ml = MULTILANG.block(line.en, { loose: true });
+      if (ml) row.insertBefore(ml, row.querySelector('.result'));
       box.appendChild(row);
     });
 
@@ -396,9 +402,14 @@
       var it = items[idx];
       var text = UI.en(it.ex.en);
       var dnote = Store.state.settings.dialect === 'gb' ? DIALECT.noteFor(it.ex.en) : null;
+      // 뜻을 떠올리는 동안 프랑스어·스페인어가 힌트가 되지 않도록, 다국어 칸은 뜻을 본 뒤에만 붙인다
+      var ml = revealed ? MULTILANG.block(it.ex.en) : null;
+      var hasMl = !!MULTILANG.settings().on && !!MULTILANG.find(it.ex.en);
       var c = el(
         '<div class="card flashcard">' +
-          '<div class="fc-meta">' + (it.icon || '') + ' ' + esc(it.scene || '') + '<span class="fc-count">' + (idx + 1) + ' / ' + items.length + '</span></div>' +
+          '<div class="fc-meta">' + (it.icon || '') + ' ' + esc(it.scene || '') +
+            (hasMl ? ' <span class="ml-badge" title="7개 국어 표현이 있다">🌐</span>' : '') +
+            '<span class="fc-count">' + (idx + 1) + ' / ' + items.length + '</span></div>' +
           '<p class="fc-en">' + esc(text) + '</p>' +
           '<div class="fc-back' + (revealed ? '' : ' hidden') + '">' +
             '<p class="fc-ko">' + esc(it.ex.ko) + '</p>' +
@@ -407,6 +418,7 @@
           '<div class="fc-actions"></div>' +
         '</div>'
       );
+      if (ml) c.querySelector('.fc-back').appendChild(ml);
       var acts = c.querySelector('.fc-actions');
 
       var playBtn = el('<button class="mini">🔊 듣기</button>');
@@ -684,6 +696,11 @@
             '<option value="standard"' + (s.pace !== 'dense' ? ' selected' : '') + '>표준 — 1·3·7·16·35일</option>' +
             '<option value="dense"' + (s.pace === 'dense' ? ' selected' : '') + '>촘촘 — 1·2·4·10·24일</option>' +
           '</select></label>' +
+        '<div class="field">' +
+          '<label class="auto-check"><input id="mlon" type="checkbox"' + (MULTILANG.settings().on ? ' checked' : '') + '> 카드와 대사에 7개 국어 함께 보기</label>' +
+          '<div class="ml-langpick" id="mlpick"></div>' +
+          '<p class="hint">뜻을 본 뒤에만 펼쳐진다. 고른 언어만 보인다.</p>' +
+        '</div>' +
         '<div class="grade-row">' +
           '<button class="btn" id="slang">신조어 팩 갱신</button>' +
           '<button class="btn" id="digest">오늘 몫 내보내기</button>' +
@@ -725,6 +742,30 @@
       s.pace = e.target.value; Store.save();
       toast(e.target.value === 'dense' ? '초반 간격을 좁혔다. 다음 채점부터 적용된다.' : '표준 간격으로 되돌렸다.');
     };
+
+    // 7개 국어 — 켜고 끄기, 보여줄 언어 고르기
+    var ml = s.multi || (s.multi = {});
+    m.querySelector('#mlon').onchange = function (e) { ml.on = e.target.checked; Store.save(); };
+    var pick = m.querySelector('#mlpick');
+    MULTI.langs.forEach(function (l) {
+      var chosen = MULTILANG.settings().langs.indexOf(l.id) >= 0;
+      var chip = el('<button type="button" class="chip' + (chosen ? ' on' : '') + '">' + l.flag + ' ' + esc(l.name) + '</button>');
+      chip.onclick = function () {
+        var cur = MULTILANG.settings().langs.slice();
+        var at = cur.indexOf(l.id);
+        if (at >= 0) {
+          if (cur.length === 1) { toast('적어도 한 언어는 남겨두자.'); return; }
+          cur.splice(at, 1);
+        } else {
+          cur.push(l.id);
+        }
+        // 표현집과 같은 순서를 유지한다
+        ml.langs = MULTI.langs.map(function (x) { return x.id; }).filter(function (id) { return cur.indexOf(id) >= 0; });
+        Store.save();
+        chip.classList.toggle('on', at < 0);
+      };
+      pick.appendChild(chip);
+    });
     m.querySelector('#slang').onclick = function () { back.remove(); openSlangImport(); };
     m.querySelector('#digest').onclick = function () { VIEWS.copyText(VIEWS.buildDigest()); };
     m.querySelector('#backup').onclick = function () { VIEWS.backupState(); };
@@ -818,6 +859,7 @@
       case 'grammar': node = VIEWS.grammarHome(); break;
       case 'drill': node = VIEWS.drillRun(); break;
       case 'studio': node = VIEWS.studio(); break;
+      case 'phrasebook': node = MULTILANG.phrasebook(); break;
       default: node = renderHome();
     }
     app.appendChild(node);

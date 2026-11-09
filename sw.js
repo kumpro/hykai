@@ -22,6 +22,8 @@ var SHELL = [
   './js/data/exam.js',
   './js/data/dialect.js',
   './js/data/personas.js',
+  './js/data/multi.js',
+  './js/multilang.js',
   './js/data/derived.js',
   './js/store.js',
   './js/srs.js',
