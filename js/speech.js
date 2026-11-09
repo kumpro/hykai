@@ -97,9 +97,12 @@
       || null;
   }
 
+  /* true = 있다, false = 없다, null = 아직 모른다.
+   * 폰에 따라 목소리 목록이 몇 초 늦게 채워진다. 그 사이에 "없다"고 단정하면 틀린 안내가 된다. */
   function hasVoiceFor(tag) {
     if (!synth) return false;
     if (!allVoices.length) loadVoices();
+    if (!allVoices.length) return null;
     return !!voiceFor(tag);
   }
 

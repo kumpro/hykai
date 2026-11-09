@@ -150,10 +150,11 @@ window.MULTILANG = (function () {
 
     var focusLang = s.focus ? langById(s.focus) : null;
     if (focusLang) {
-      var voiceOk = Speech.hasVoiceFor(focusLang.tts);
+      var voiceOk = Speech.hasVoiceFor(focusLang.tts);   // true / false / null(아직 모름)
       wrap.appendChild(el('<p class="hint">' + focusLang.flag + ' ' + esc(focusLang.name) + '만 크게 보여준다. ' +
-        (voiceOk ? '🔊로 원어민 발음을 들을 수 있다.'
-                 : '이 기기에는 ' + esc(focusLang.name) + ' 음성이 아직 없다. 휴대폰 설정에서 텍스트 음성 변환 언어를 추가하면 들린다.') +
+        (voiceOk === false
+          ? '이 기기에는 ' + esc(focusLang.name) + ' 음성이 아직 없다. 휴대폰 설정에서 텍스트 음성 변환 언어를 추가하면 들린다.'
+          : '🔊로 원어민 발음을 들어보자.') +
         '</p>'));
     }
 
