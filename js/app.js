@@ -643,6 +643,12 @@
 
   /* ---------- 설정 ---------- */
 
+  /* 배포 때 찍힌 "날짜-커밋" 번호. 로컬에서 띄우면 자리표시자 그대로라 '개발용'으로 보여준다. */
+  function appVersion() {
+    var v = window.APP_VERSION || '';
+    return (!v || v.indexOf('BUILD') >= 0) ? '개발용' : v;
+  }
+
   function openSettings() {
     var s = Store.state.settings;
     var voices = Speech.listVoices();
@@ -691,6 +697,7 @@
           '<button class="btn bad" id="reset">기록 초기화</button>' +
           '<button class="btn primary" id="close">닫기</button>' +
         '</div>' +
+        '<p class="app-version">앱 버전 ' + esc(appVersion()) + '</p>' +
       '</div>'
     );
     back.appendChild(m);

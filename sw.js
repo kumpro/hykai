@@ -1,10 +1,15 @@
 /* 오프라인 캐시. 지하철에서도 열려야 하므로 앱 파일 전체를 미리 받아둔다.
- * VERSION을 올리면 다음 방문 때 새 파일로 갈아끼워진다. */
-var VERSION = 'net-v3';
+ *
+ * VERSION은 배포할 때 GitHub Actions가 "날짜-커밋" 번호로 찍어 넣는다.
+ * 번호가 바뀌면 브라우저가 이 파일이 달라졌다는 걸 알아채고 새 캐시를 통째로 받는다.
+ * 파일을 하나씩 갈아끼우지 않고 통째로 받는 이유는, 새 app.js와 옛 views.js가
+ * 섞여 도는 순간을 만들지 않기 위해서다. */
+var VERSION = 'net-__BUILD__';
 var SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
+  './js/version.js',
   './assets/style.css',
   './assets/themes.css',
   './assets/icon-192.png',

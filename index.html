@@ -17,6 +17,8 @@
 <body>
   <main id="app"></main>
 
+  <script src="js/version.js"></script>
+
   <!-- 학습 내용 -->
   <script src="js/data/daily.js"></script>
   <script src="js/data/travel.js"></script>
@@ -43,8 +45,24 @@
   <script>
     // 오프라인 캐시. file://로 열었을 때는 등록되지 않으니 조용히 넘어간다.
     if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      // 처음 설치할 때도 제어권이 넘어오므로, 원래 관리자가 있었을 때만 "새 버전" 알림을 띄운다
+      var hadController = !!navigator.serviceWorker.controller;
+
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (!hadController || document.getElementById('update-bar')) return;
+        var bar = document.createElement('div');
+        bar.id = 'update-bar';
+        bar.className = 'update-bar';
+        bar.innerHTML = '<span>새 버전이 준비됐다</span><button type="button">지금 적용</button>';
+        bar.querySelector('button').onclick = function () { location.reload(); };
+        document.body.appendChild(bar);
+      });
+
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('sw.js').catch(function () { /* 캐시 없이도 앱은 동작한다 */ });
+        navigator.serviceWorker.register('sw.js').then(function (reg) {
+          // 앱을 오래 켜둔 채로 쓰는 경우를 위해 한 시간마다 새 버전을 확인한다
+          setInterval(function () { reg.update().catch(function () {}); }, 60 * 60 * 1000);
+        }).catch(function () { /* 캐시 없이도 앱은 동작한다 */ });
       });
     }
   </script>
